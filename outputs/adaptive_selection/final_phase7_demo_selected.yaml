@@ -1,0 +1,13 @@
+adaptive_selection:
+  optimizer: BayesianOptimization
+  best_score: 0.0
+  baseline_score: 0.0
+  score_improvement: 0.0
+  percentage_improvement: 0.0
+  total_runtime_seconds: 4.081216000000495
+  selected_parameters:
+    beta: 0.8
+    sigma_spatial: 2.5
+    sigma_intensity: 1.5
+    w_pure_spatial: 0.2
+    lambda_dl: 0.5

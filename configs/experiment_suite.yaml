@@ -1,0 +1,36 @@
+# ==============================================================================
+# Automated Research Experiments Suite Configuration
+# Systematic benchmark matrix comparing spatial and non-spatial FDR methods
+# ==============================================================================
+
+suite_id: "spatial_fdr_systematic_benchmark"
+description: "Comprehensive automated comparison of baseline vs proposed adaptive fcHMRF-LIS"
+
+matrix:
+  snr_list: [1.5, 2.5]
+  methods:
+    - "baseline_bh"
+    - "original_fchmrf"
+    - "proposed_fchmrf"
+    - "proposed_adaptive_fchmrf"
+  seeds: [42]
+  alpha: 0.05
+  grid_size: [40, 40, 20]
+  output_dir: "outputs/automated_experiments"
+
+# Default hyperparameter overrides for fcHMRF
+defaults:
+  beta: 0.8
+  sigma_spatial: 2.5
+  sigma_intensity: 1.5
+  lambda_dl: 0.5
+  max_iterations: 30
+  tolerance: 0.0001
+  damping_tau: 0.7
+
+# Adaptive optimization settings
+adaptive:
+  algorithm: "bayesian_optimization"
+  n_iterations: 6
+  n_initial: 2
+  acquisition_function: "expected_improvement"

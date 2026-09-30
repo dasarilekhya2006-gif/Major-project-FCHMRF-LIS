@@ -1,0 +1,109 @@
+# ==============================================================================
+# Adaptive Deep Learning-Assisted fcHMRF-LIS
+# Master Default Configuration
+# ==============================================================================
+
+project:
+  name: "Adaptive Deep Learning-Assisted fcHMRF-LIS"
+  version: "0.1.0"
+  description: "Spatial False Discovery Rate Control in Neuroimaging"
+  seed: 42
+  device: "cuda" # "cuda" or "cpu"
+  log_level: "INFO"
+
+# Data paths and input specifications
+data:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  synthetic_dir: "data/synthetic"
+  default_affine: "MNI152"
+  mask_threshold: 0.1
+  spatial_shape: [64, 64, 32] # standard grid for prototyping
+
+# Preprocessing settings
+preprocessing:
+  normalize: true
+  normalization_method: "zscore" # "zscore", "median_iqr", "robust_empirical_null"
+  gaussian_fwhm_mm: 4.0
+  spatial_connectivity: 26 # 6, 18, or 26-neighbor grid graph
+
+# Deep Learning ROI Detection (Lightweight Prior Estimator)
+deep_learning:
+  model_name: "lightweight_unet3d"
+  in_channels: 1
+  base_channels: 16
+  num_classes: 1 # Binary prior probability map output P(theta_i = 1)
+  dropout_rate: 0.1
+  learning_rate: 0.001
+  batch_size: 4
+  epochs: 50
+  checkpoint_dir: "checkpoints"
+  use_pretrained_prior: false
+
+# Statistical Analysis & Baseline Methods
+statistical_analysis:
+  nominal_fdr_alpha: 0.05
+  null_distribution: "empirical_gaussian" # "standard_normal", "empirical_gaussian"
+  empirical_null_method: "central_matching" # "central_matching", "maximum_pseudolikelihood"
+  run_baselines:
+    - "benjamini_hochberg"
+    - "benjamini_yekutieli"
+    - "storey_qvalue"
+    - "efron_locfdr"
+    - "standard_hmrf_lis"
+
+# fcHMRF-LIS Spatial Model Settings
+fchmrf_lis:
+  max_iterations: 30
+  convergence_tolerance: 1e-4
+  spatial_sigma: 2.0       # Spatial distance kernel bandwidth (voxels)
+  feature_sigma: 1.5       # Statistical feature difference bandwidth
+  spatial_cutoff_radius: 5 # Truncation radius for dense edge computation (in voxels)
+  mean_field_damping: 0.5  # Damping factor to ensure mean-field update stability
+
+# Adaptive Parameter Selection
+adaptive_parameter_selection:
+  method: "mean_field_em" # "mean_field_em", "pseudo_likelihood", "grid_search_bic"
+  beta_initial: 0.8       # Initial Ising spatial coupling parameter
+  beta_bounds: [0.0, 3.0]
+  lambda_dl_initial: 0.5  # Weight for deep learning prior vs empirical mixture prior
+  lambda_dl_bounds: [0.0, 1.0]
+  em_max_iter: 20
+  em_tolerance: 1e-3
+
+# Evaluation & Benchmark Metrics
+evaluation:
+  nominal_alpha_levels: [0.01, 0.05, 0.10]
+  metrics:
+    - "empirical_fdr"
+    - "true_positive_rate"
+    - "false_nondiscovery_rate"
+    - "f1_score"
+    - "matthews_corrcoef"
+    - "dice_coefficient"
+  output_dir: "outputs/evaluation"
+
+# Robustness Stress-Testing
+robustness:
+  snr_levels: [0.5, 1.0, 2.0, 3.0]
+  noise_types:
+    - "gaussian"
+    - "student_t_3df"
+    - "spatially_correlated_gaussian"
+  null_shifts: [-0.5, 0.0, 0.5]
+  null_scale_distortions: [0.8, 1.0, 1.25]
+  hyperparameter_perturbation_pct: 20.0
+  output_dir: "outputs/robustness"
+
+# Visualization and API
+visualization:
+  dpi: 300
+  colormap_zscore: "cold_hot"
+  colormap_lis: "viridis_r"
+  export_format: "png"
+  output_dir: "outputs/figures"
+
+api:
+  host: "127.0.0.1"
+  port: 8000
+  reload: true

@@ -1,0 +1,131 @@
+{
+  "optimizer_name": "BayesianOptimization",
+  "best_parameters": {
+    "beta": 0.8,
+    "sigma_spatial": 2.5,
+    "sigma_intensity": 1.5,
+    "w_pure_spatial": 0.2
+  },
+  "best_score": 0.0,
+  "baseline_parameters": {
+    "beta": 0.8,
+    "sigma_spatial": 2.5,
+    "sigma_intensity": 1.5,
+    "w_pure_spatial": 0.2
+  },
+  "baseline_score": 0.0,
+  "score_improvement": 0.0,
+  "total_runtime_seconds": 4.84055140000055,
+  "trials": [
+    {
+      "trial_idx": 1,
+      "parameters": {
+        "beta": 0.8,
+        "sigma_spatial": 2.5,
+        "sigma_intensity": 1.5,
+        "w_pure_spatial": 0.2
+      },
+      "score": 0.0,
+      "metrics": {
+        "power": 0.0,
+        "fdp": 0.0,
+        "f1": 0.0,
+        "mcc": 0.0,
+        "precision": 0.0,
+        "num_discoveries": 0.0,
+        "lis_threshold": 0.0,
+        "mf_iterations": 14.0
+      },
+      "elapsed_seconds": 0.7752799999980198,
+      "timestamp": "2026-09-26T22:58:24.662016"
+    },
+    {
+      "trial_idx": 2,
+      "parameters": {
+        "beta": 0.9988962852336699,
+        "sigma_spatial": 4.802857225639665,
+        "sigma_intensity": 2.6959818254342154,
+        "w_pure_spatial": 0.2993292420985183
+      },
+      "score": 0.0,
+      "metrics": {
+        "power": 0.0,
+        "fdp": 0.0,
+        "f1": 0.0,
+        "mcc": 0.0,
+        "precision": 0.0,
+        "num_discoveries": 0.0,
+        "lis_threshold": 0.0,
+        "mf_iterations": 15.0
+      },
+      "elapsed_seconds": 1.376694900001894,
+      "timestamp": "2026-09-26T22:58:26.045790"
+    },
+    {
+      "trial_idx": 3,
+      "parameters": {
+        "beta": 0.47444473706184764,
+        "sigma_spatial": 1.6239780813448106,
+        "sigma_intensity": 0.6742508365045984,
+        "w_pure_spatial": 0.4330880728874676
+      },
+      "score": 0.0,
+      "metrics": {
+        "power": 0.0,
+        "fdp": 0.0,
+        "f1": 0.0,
+        "mcc": 0.0,
+        "precision": 0.0,
+        "num_discoveries": 0.0,
+        "lis_threshold": 0.0,
+        "mf_iterations": 12.0
+      },
+      "elapsed_seconds": 0.41917930000272463,
+      "timestamp": "2026-09-26T22:58:26.465572"
+    },
+    {
+      "trial_idx": 4,
+      "parameters": {
+        "beta": 2.4791869637541293,
+        "sigma_spatial": 3.1779293312010517,
+        "sigma_intensity": 3.388305050759618,
+        "w_pure_spatial": 0.03780252030837539
+      },
+      "score": 0.0,
+      "metrics": {
+        "power": 0.0,
+        "fdp": 0.0,
+        "f1": 0.0,
+        "mcc": 0.0,
+        "precision": 0.0,
+        "num_discoveries": 0.0,
+        "lis_threshold": 0.0,
+        "mf_iterations": 16.0
+      },
+      "elapsed_seconds": 0.3338603000011062,
+      "timestamp": "2026-09-26T22:58:27.660944"
+    },
+    {
+      "trial_idx": 5,
+      "parameters": {
+        "beta": 2.0432200870381343,
+        "sigma_spatial": 4.802131283817635,
+        "sigma_intensity": 0.5661984460468725,
+        "w_pure_spatial": 0.49126063612801935
+      },
+      "score": 0.0,
+      "metrics": {
+        "power": 0.0,
+        "fdp": 0.0,
+        "f1": 0.0,
+        "mcc": 0.0,
+        "precision": 0.0,
+        "num_discoveries": 0.0,
+        "lis_threshold": 0.0,
+        "mf_iterations": 16.0
+      },
+      "elapsed_seconds": 0.17031320000023698,
+      "timestamp": "2026-09-26T22:58:28.726644"
+    }
+  ]
+}

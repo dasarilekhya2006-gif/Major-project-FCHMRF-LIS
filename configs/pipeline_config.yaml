@@ -1,0 +1,51 @@
+# ==============================================================================
+# Master Pipeline Configuration: End-to-End Neuroimaging Research Pipeline
+#
+# Connects:
+#   Neuroimaging Input
+#   → Preprocessing
+#   → 3D U-Net ROI Detection
+#   → ROI-Restricted Statistical Testing
+#   → Adaptive fcHMRF
+#   → LIS
+#   → Spatial FDR Control
+# ==============================================================================
+
+general:
+  experiment_id: "fchmrf_lis_master_run"
+  output_dir: "outputs"
+  device: "auto"                        # 'auto', 'cpu', or 'cuda'
+  force_recompute: false                # true forces recomputation; false reuses existing cached artifacts
+  run_adaptive_selection: false         # Toggle Phase 6 Bayesian Optimization hyperparameter tuning
+  seed: 42
+
+stage1_data_loading:
+  input_path: null                      # Path to raw 3D/4D NIfTI (null generates reproducible synthetic volume)
+
+stage2_preprocessing:
+  norm_method: "zscore"                 # 'zscore', 'minmax', or 'robust'
+  clip_percentiles: [1.0, 99.0]
+
+stage3_roi_detection:
+  checkpoint_path: null                 # Optional path to trained 3D U-Net PyTorch weights (.pt)
+  roi_threshold: 0.5                    # Probability threshold for binary ROI mask
+
+stage4_statistical_testing:
+  test_type: "one_sample_t"             # 'one_sample_t', 'two_sample_t', 'paired_t', 'glm'
+  mu_null: 0.0                          # Null hypothesis contrast mean
+  alternative: "greater"                # 'greater', 'two_sided', or 'less'
+  restrict_stats_to_roi: true           # Restrict voxel-wise test to Phase 3 3D U-Net ROI mask
+
+stage5_fchmrf_lis:
+  method_mode: "adaptive_dl_fchmrf"     # 'original_fchmrf' (pure emission prior) or 'adaptive_dl_fchmrf' (3D U-Net prior)
+  beta: 0.8                             # Spatial coupling parameter
+  sigma_spatial: 2.5                    # Spatial Euclidean bandwidth (mm/voxels)
+  sigma_intensity: 1.5                  # Feature contrast difference bandwidth
+  lambda_dl: 0.5                        # Weight for 3D U-Net prior in adaptive mode
+  alpha: 0.05                           # Target nominal spatial FDR
+  max_iterations: 40                    # Max dense mean-field iterations
+
+stage6_adaptive_selection:
+  n_iterations: 10                      # Guided Bayesian Optimization iterations
+  n_initial: 4                          # Initial random warm-up trials
+  acquisition_function: "expected_improvement"

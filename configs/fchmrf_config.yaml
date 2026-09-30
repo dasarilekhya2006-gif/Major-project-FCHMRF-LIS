@@ -1,0 +1,60 @@
+# ==============================================================================
+# Phase 5 Configuration: fcHMRF-LIS Spatial Statistical Modeling
+# ==============================================================================
+
+fchmrf_lis:
+  # Method distinction mode:
+  #   - 'original_fchmrf': Published fcHMRF-LIS methodology with spatially uniform prior
+  #                        P(theta_i = 1) = 1 - p0 and lambda_dl strictly 0.0
+  #   - 'adaptive_dl_fchmrf': Project modification integrating 3D U-Net prior map pi_i^(DL)
+  #                           into unary energy via convex combination (lambda_dl > 0)
+  method_mode: "original_fchmrf"
+
+  # Spatial coupling parameter beta (inverse temperature):
+  # Controls neighborhood consensus strength. Higher values produce smoother clusters.
+  beta: 0.8
+
+  # Bilateral kernel bandwidths:
+  # sigma_spatial: Euclidean distance scale in physical (mm) or voxel coordinates
+  sigma_spatial: 2.5
+  # sigma_intensity: Radiometric feature scale for statistical contrast differences |z_i - z_j|
+  sigma_intensity: 1.5
+
+  # Kernel component weights:
+  # w_spatial: Contrast-sensitive bilateral weight
+  w_spatial: 1.0
+  # w_pure_spatial: Isotropic spatial proximity weight
+  w_pure_spatial: 0.2
+  sigma_pure_spatial: 4.0
+
+  # Deep learning prior weight (only active when method_mode == 'adaptive_dl_fchmrf')
+  # lambda_dl in [0.0, 1.0]. lambda_dl = 0 identically reproduces original fcHMRF-LIS.
+  lambda_dl: 0.5
+
+  # Spatial False Discovery Rate target level:
+  alpha: 0.05
+
+  # Variational Mean-Field inference settings:
+  max_iterations: 40
+  tolerance: 1e-4
+  damping: 0.5
+
+  # Two-group emission mixture settings:
+  # fix_null: true enforces theoretical standard normal null N(0, 1)
+  fix_null: true
+
+# Input sources (from Phase 3 and Phase 4)
+inputs:
+  # Statistical z-score map (from Phase 4 or raw contrast)
+  z_score_path: "outputs/statistical_maps/voxel_stat_zscores.nii.gz"
+  # ROI mask restricting analysis domain (from Phase 3 3D U-Net)
+  roi_mask_path: "outputs/segmentations/synthetic_demo_roi_binary.nii.gz"
+  # Optional continuous DL prior probability map (from Phase 3)
+  dl_prior_path: "outputs/segmentations/synthetic_demo_roi_prob.nii.gz"
+
+# Output destinations
+outputs:
+  nifti_dir: "outputs/fchmrf_results"
+  figures_dir: "outputs/figures"
+  prefix: "fchmrf_lis"
+  dpi: 300

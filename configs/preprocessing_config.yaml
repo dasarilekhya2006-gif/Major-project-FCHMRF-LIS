@@ -1,0 +1,36 @@
+# ==============================================================================
+# Neuroimaging Preprocessing Configuration
+# Configures modular pipeline stages for ROI detection and statistical analysis
+# ==============================================================================
+
+imputation:
+  method: "zero"                       # "zero", "mean", "nearest_finite"
+
+masking:
+  compute_if_missing: true            # Compute intensity mask if no mask supplied
+  threshold_percentile: 10.0          # Percentile cutoff for non-zero voxels
+  fill_holes: true                    # Apply 3D morphological hole filling
+
+resampling:
+  enabled: false                      # Enable spatial resampling to isotropic resolution
+  target_voxel_spacing_mm: [2.0, 2.0, 2.0]
+  interpolation_order: 1              # 0: Nearest-neighbor, 1: Trilinear, 3: Spline
+
+denoising:
+  method: "none"                      # "none", "gaussian", "median"
+  gaussian_fwhm_mm: 4.0
+  median_kernel_size: 3
+
+normalization:
+  method: "zscore"                    # "zscore", "robust_zscore", "min_max", "percentile_clip", "none"
+  percentile_bounds: [1.0, 99.0]
+
+standardization_for_dl:
+  pad_crop_mode: "pad_to_divisible"   # "pad_to_divisible", "center_pad_crop", "none"
+  divisible_by: 8                     # Spatial dimension divisibility constraint for 3D U-Net
+  target_spatial_shape: null          # Fixed [nx, ny, nz] when mode is "center_pad_crop"
+
+quality_control:
+  generate_plots: true
+  output_dir: "outputs/qc"
+  dpi: 300

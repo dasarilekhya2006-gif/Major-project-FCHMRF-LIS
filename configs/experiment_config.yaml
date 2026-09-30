@@ -1,0 +1,45 @@
+# ==============================================================================
+# Experiment Configuration
+# Execution matrix for benchmark runs and sensitivity testing
+# ==============================================================================
+
+benchmark:
+  name: "spatial_fdr_benchmark"
+  replications: 50
+  alpha_thresholds: [0.01, 0.05, 0.10]
+  methods_to_compare:
+    - "benjamini_hochberg"
+    - "storey_qvalue"
+    - "efron_locfdr"
+    - "standard_hmrf_lis"
+    - "adaptive_dl_fchmrf_lis"
+  synthetic_scenarios:
+    - name: "focal_high_snr"
+      snr: 3.0
+      num_clusters: 3
+      cluster_radius: 4
+    - name: "focal_low_snr"
+      snr: 1.0
+      num_clusters: 3
+      cluster_radius: 4
+    - name: "diffuse_clusters"
+      snr: 1.5
+      num_clusters: 6
+      cluster_radius: 8
+
+robustness_experiments:
+  null_distribution_stress_test:
+    scenarios:
+      - "standard_normal"
+      - "shifted_normal_mu0.3"
+      - "inflated_variance_sigma1.3"
+      - "student_t_nu4"
+  hyperparameter_sensitivity:
+    beta_sweep: [0.1, 0.4, 0.8, 1.2, 2.0]
+    lambda_sweep: [0.0, 0.25, 0.5, 0.75, 1.0]
+
+output:
+  save_raw_tables: true
+  save_plots: true
+  generate_latex_summary: true
+  results_dir: "outputs/experiments"

@@ -1,0 +1,27 @@
+# ==============================================================================
+# Data Configuration
+# Defines synthetic benchmark specifications and neuroimaging data settings
+# ==============================================================================
+
+synthetic_simulation:
+  grid_size: [64, 64, 32]
+  voxel_size_mm: [2.0, 2.0, 2.0]
+  num_replications: 100
+  signal_to_noise_ratio: 2.0
+  activation_geometry:
+    num_clusters: 4
+    cluster_radius_range: [3, 8] # voxels
+    signal_amplitude_range: [2.0, 4.5]
+    diffuse_background_rate: 0.005 # sparse weak activations
+  spatial_noise:
+    type: "gaussian_random_field" # "white_noise", "gaussian_random_field"
+    fwhm_mm: 6.0
+    degrees_of_freedom: null # for student-t null simulations
+
+real_dataset:
+  name: "hcp_motor_task"
+  format: "nifti"
+  file_pattern: "*.nii.gz"
+  contrast_name: "right_hand_vs_cue"
+  reference_mask: "MNI152_T1_2mm_brain_mask.nii.gz"
+  cache_preprocessed: true

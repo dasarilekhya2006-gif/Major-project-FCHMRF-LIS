@@ -1,0 +1,53 @@
+# ==============================================================================
+# Phase 4 Configuration: Voxel-Level Statistical Testing
+# ==============================================================================
+
+statistical_analysis:
+  # Hypothesis test type:
+  #   - 'one_sample_t': Tests group mean > popmean (requires 4D volume across subjects)
+  #   - 'two_sample_t': Compares Group 1 vs Group 2 (independent samples)
+  #   - 'paired_t': Within-subject difference testing (Pre vs Post, Condition A vs B)
+  #   - 'glm': Ordinary least squares multiple regression (requires design_matrix and contrast)
+  #   - 'direct_z': Direct passthrough if input volume is already a z-score map
+  test_type: "one_sample_t"
+
+  # Direction of alternative hypothesis H_1:
+  #   - 'greater': Positive activation / contrast (typical neuroimaging contrast)
+  #   - 'two_sided': Non-directional activation or deactivation
+  #   - 'less': Deactivation / negative contrast
+  alternative: "greater"
+
+  # Population null mean (for one-sample t-test)
+  popmean: 0.0
+
+  # Variance assumption for two-sample t-test:
+  #   - false: Welch's unequal-variance t-test (recommended for robustness)
+  #   - true: Student's equal-variance pooled t-test
+  equal_var: false
+
+  # Non-finite (NaN / Inf) voxel policy:
+  #   - 'mask_out': Exclude affected voxels from active analysis mask (recommended)
+  #   - 'zero': Impute non-finite voxels with 0.0
+  #   - 'raise': Raise DataValidationError on detection
+  nan_policy: "mask_out"
+
+# ROI Masking (Phase 3 Integration)
+roi_restriction:
+  # If true, restricts voxel-level statistical estimation to active ROI voxels
+  enabled: true
+  # Path to ROI binary mask (from Phase 3 3D U-Net or anatomical atlas)
+  mask_path: "outputs/segmentations/synthetic_demo_roi_binary.nii.gz"
+
+# GLM Specifics (only utilized when test_type == 'glm')
+glm:
+  design_matrix_path: null
+  contrast: [1.0]
+  regressor_names: ["Condition"]
+
+# Output Destinations
+outputs:
+  nifti_dir: "outputs/statistical_maps"
+  figures_dir: "outputs/figures"
+  prefix: "voxel_stat"
+  p_threshold: 0.05
+  figure_dpi: 300

@@ -1,0 +1,58 @@
+# ==============================================================================
+# Phase 8 Configuration: Rigorous Experimental Comparison
+#
+# Evaluates:
+#   1. Benjamini-Hochberg FDR (BH-FDR)
+#   2. Local FDR (Efron lfdr)
+#   3. Original Published fcHMRF-LIS (lambda_dl = 0.0)
+#   4. Proposed ROI-Assisted fcHMRF-LIS (fixed lambda_dl = 0.5)
+#   5. Proposed Adaptive ROI-Assisted fcHMRF-LIS (optimized hyperparameters)
+# ==============================================================================
+
+experiment:
+  name: "phase8_rigorous_comparison"
+  num_trials: 5                         # Monte Carlo simulation repetitions
+  nominal_alpha: 0.05                   # Target nominal spatial FDR
+  snr: 3.0                              # Signal-to-Noise Ratio for ground-truth activations
+  volume_shape: [24, 24, 12]            # Simulated 3D volume dimensions (X, Y, Z)
+  spatial_smooth_sigma: 1.0             # Bandwidth for background spatial correlation
+  dl_prior_accuracy: 0.85               # Simulated 3D U-Net localization accuracy
+  seed: 42
+
+methods:
+  include_bh_fdr: true
+  include_local_fdr: false
+  include_original_fchmrf: true
+  include_roi_fchmrf: true
+  include_adaptive_fchmrf: true
+  include_adaptive_roi_fchmrf: true
+
+# Hyperparameters for fcHMRF models
+hyperparameters:
+  fixed:
+    beta: 0.8
+    sigma_spatial: 2.5
+    sigma_intensity: 1.5
+    lambda_dl: 0.5
+    max_iterations: 35
+  adaptive_fchmrf:
+    beta: 1.15
+    sigma_spatial: 2.20
+    sigma_intensity: 1.35
+    w_pure_spatial: 0.20
+    max_iterations: 35
+  adaptive_optimized:
+    beta: 1.15
+    sigma_spatial: 2.20
+    sigma_intensity: 1.35
+    lambda_dl: 0.65
+    max_iterations: 35
+
+outputs:
+  output_dir: "outputs/experiments/phase8"
+  tables_dir: "outputs/tables"
+  figures_dir: "outputs/figures"
+  csv_filename: "phase8_comparative_metrics.csv"
+  markdown_filename: "phase8_comparative_metrics.md"
+  figure_filename: "phase8_comparative_summary.png"
+  dpi: 300

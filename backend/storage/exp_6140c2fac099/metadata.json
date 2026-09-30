@@ -1,0 +1,60 @@
+{
+  "experiment_id": "exp_6140c2fac099",
+  "filename": "MR_Gd.nii.gz",
+  "created_at": "2026-09-30T16:30:37.676969",
+  "status": "completed",
+  "stages": {
+    "upload": "completed",
+    "preprocess": "completed",
+    "segmentation": "completed",
+    "statistics": "completed",
+    "fchmrf_lis": "completed",
+    "fdr": "completed"
+  },
+  "parameters": {
+    "nominal_alpha": 0.06,
+    "beta": 1.5,
+    "lambda_dl": 0.3,
+    "max_iterations": 20
+  },
+  "shape": [
+    176,
+    188,
+    144
+  ],
+  "voxel_spacing": [
+    0.9765620231628418,
+    0.9765620231628418,
+    1.0025999546051025
+  ],
+  "orientation": "RAS",
+  "affine": [
+    [
+      0.976284384727478,
+      0.022005438804626465,
+      -0.007811427116394043,
+      -85.712646484375
+    ],
+    [
+      -0.02101755142211914,
+      0.9702104330062866,
+      0.1121056079864502,
+      -112.45329284667969
+    ],
+    [
+      0.01001960039138794,
+      -0.10899937152862549,
+      0.9962821006774902,
+      -56.81804656982422
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "discoveries_proposed": 15087,
+  "discoveries_baseline": 7474,
+  "lis_threshold": 0.1826639867256763
+}

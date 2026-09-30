@@ -1,0 +1,60 @@
+{
+  "experiment_id": "exp_db32ca270e92",
+  "filename": "CT_Abdo.nii",
+  "created_at": "2026-09-28T10:22:19.778022",
+  "status": "preprocessed",
+  "stages": {
+    "upload": "completed",
+    "preprocess": "completed",
+    "segmentation": "completed",
+    "statistics": "completed",
+    "fchmrf_lis": "completed",
+    "fdr": "completed"
+  },
+  "parameters": {
+    "nominal_alpha": 0.05,
+    "beta": 0.8,
+    "lambda_dl": 0.5,
+    "max_iterations": 20
+  },
+  "shape": [
+    255,
+    178,
+    256
+  ],
+  "voxel_spacing": [
+    1.4937503337860107,
+    1.489554524421692,
+    1.494140625
+  ],
+  "orientation": "RAS",
+  "affine": [
+    [
+      1.4937503337860107,
+      0.0,
+      0.0,
+      -226.39654541015625
+    ],
+    [
+      0.0,
+      1.489554524421692,
+      0.0,
+      -131.16995239257812
+    ],
+    [
+      0.0,
+      0.0,
+      1.494140625,
+      -181.25
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "discoveries_proposed": 220119,
+  "discoveries_baseline": 80242,
+  "lis_threshold": 0.1503435869859714
+}

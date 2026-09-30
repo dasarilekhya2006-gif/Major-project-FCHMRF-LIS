@@ -1,0 +1,176 @@
+{
+  "experiment_id": "test_e2e_quick",
+  "start_time": "2026-09-26T22:56:48.590588",
+  "end_time": "2026-09-26T22:59:26.309771",
+  "total_duration_seconds": 157.71916120000242,
+  "system_environment": {
+    "python_version": "3.13.9",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "processor": "Intel64 Family 6 Model 78 Stepping 3, GenuineIntel",
+    "architecture": "64bit",
+    "numpy_version": "2.3.5",
+    "torch_version": "2.14.0+cpu",
+    "cuda_available": false,
+    "gpu_name": "CPU (No CUDA device detected)",
+    "nibabel_version": "5.4.2",
+    "scipy_version": "1.16.3"
+  },
+  "pipeline_config": {
+    "experiment_id": "test_e2e_quick",
+    "output_dir": "outputs",
+    "device": "auto",
+    "force_recompute": true,
+    "run_adaptive_selection": true,
+    "seed": 42,
+    "raw_input_path": null,
+    "norm_method": "zscore",
+    "clip_percentiles": [
+      1.0,
+      99.0
+    ],
+    "model_checkpoint_path": null,
+    "roi_threshold": 0.5,
+    "test_type": "one_sample_t",
+    "mu_null": 0.0,
+    "alternative": "greater",
+    "restrict_stats_to_roi": true,
+    "fchmrf_mode": "original_fchmrf",
+    "beta": 0.8,
+    "sigma_spatial": 2.5,
+    "sigma_intensity": 1.5,
+    "lambda_dl": 0.5,
+    "alpha": 0.05,
+    "max_mf_iterations": 10,
+    "bo_iterations": 2,
+    "bo_initial": 2,
+    "acquisition_function": "expected_improvement"
+  },
+  "stages": {
+    "data_loading": {
+      "stage": "data_loading",
+      "status": "completed",
+      "output_files": {
+        "raw_volume": "outputs\\raw_synthetic_demo.nii.gz"
+      },
+      "metrics": {
+        "shape": [
+          32,
+          32,
+          16
+        ],
+        "is_4d": false,
+        "voxel_count": 16384,
+        "voxel_spacing": [
+          2.0,
+          2.0,
+          2.0
+        ]
+      },
+      "elapsed_seconds": 0.15143199999874923,
+      "error_message": null,
+      "recomputed": true
+    },
+    "preprocessing": {
+      "stage": "preprocessing",
+      "status": "completed",
+      "output_files": {
+        "preprocessed_nifti": "outputs\\preprocessed\\test_e2e_quick_preprocessed.nii.gz",
+        "qc_figure": "outputs\\figures\\test_e2e_quick_preprocessing_qc.png"
+      },
+      "metrics": {
+        "original_shape": [
+          32,
+          32,
+          16
+        ],
+        "processed_shape": [
+          32,
+          32,
+          16
+        ],
+        "mean_intensity": 1.4901161193847656e-08,
+        "std_intensity": 0.6719657778739929
+      },
+      "elapsed_seconds": 36.24210949999906,
+      "error_message": null,
+      "recomputed": true
+    },
+    "roi_detection": {
+      "stage": "roi_detection",
+      "status": "completed",
+      "output_files": {
+        "roi_binary": "outputs\\segmentations\\test_e2e_quick_roi_binary.nii.gz",
+        "roi_prob": "outputs\\segmentations\\test_e2e_quick_roi_prob.nii.gz"
+      },
+      "metrics": {
+        "roi_voxels": 820,
+        "roi_volume_mm3": 6560.0,
+        "threshold_used": 0.5,
+        "device_used": "cpu"
+      },
+      "elapsed_seconds": 3.404144500000257,
+      "error_message": null,
+      "recomputed": true
+    },
+    "statistical_testing": {
+      "stage": "statistical_testing",
+      "status": "completed",
+      "output_files": {
+        "z_scores": "outputs\\statistical_maps\\test_e2e_quick_zscores.nii.gz",
+        "p_values": "outputs\\statistical_maps\\test_e2e_quick_pvalues.nii.gz",
+        "ortho_figure": "outputs\\figures\\test_e2e_quick_stats_ortho.png"
+      },
+      "metrics": {
+        "test_type": "one_sample_t",
+        "analyzed_voxels": 820,
+        "uncorrected_significant_p001": 0,
+        "max_abs_z": 2.5210459232330322
+      },
+      "elapsed_seconds": 54.98475010000038,
+      "error_message": null,
+      "recomputed": true
+    },
+    "adaptive_selection": {
+      "stage": "adaptive_selection",
+      "status": "completed",
+      "output_files": {
+        "selected_yaml": "outputs\\adaptive_selection\\test_e2e_quick_selected.yaml",
+        "history_json": "outputs\\adaptive_selection\\test_e2e_quick_history.json",
+        "summary_figure": "outputs\\figures\\test_e2e_quick_adaptive_summary.png"
+      },
+      "metrics": {
+        "best_score": 0.0,
+        "baseline_score": 0.0,
+        "score_improvement": 0.0,
+        "is_benefit_measurable": false,
+        "total_bo_runtime_seconds": 4.84055140000055
+      },
+      "elapsed_seconds": 30.712995099998807,
+      "error_message": null,
+      "recomputed": true
+    },
+    "fchmrf_lis": {
+      "stage": "fchmrf_lis",
+      "status": "completed",
+      "output_files": {
+        "lis_map": "outputs\\fchmrf_results\\test_e2e_quick_lis_map.nii.gz",
+        "significant_mask": "outputs\\fchmrf_results\\test_e2e_quick_significant_mask.nii.gz",
+        "posterior_prob": "outputs\\fchmrf_results\\test_e2e_quick_posterior_prob.nii.gz",
+        "summary_json": "outputs\\fchmrf_results\\test_e2e_quick_summary.json",
+        "summary_figure": "outputs\\figures\\test_e2e_quick_fchmrf_summary.png"
+      },
+      "metrics": {
+        "method_mode": "original_fchmrf",
+        "analyzed_voxels": 820,
+        "discoveries": 0,
+        "discovery_rate_pct": 0.0,
+        "lis_cutoff": 0.0,
+        "estimated_fdr": 0.0,
+        "nominal_alpha": 0.05
+      },
+      "elapsed_seconds": 32.14896779999981,
+      "error_message": null,
+      "recomputed": true
+    }
+  }
+}

@@ -1,0 +1,40 @@
+# ==============================================================================
+# Phase 6 Configuration: Adaptive Hyperparameter Optimization for fcHMRF-LIS
+# ==============================================================================
+
+adaptive_selection:
+  # Optimizer algorithm: 'bayesian_optimization' or 'random_search'
+  algorithm: "bayesian_optimization"
+
+  # Bayesian Optimization settings
+  acquisition_function: "expected_improvement" # 'expected_improvement', 'upper_confidence_bound', 'probability_of_improvement'
+  xi: 0.01                                    # Exploration parameter for EI / PI
+  kappa: 2.0                                  # Exploration weight for UCB
+  n_initial: 5                                # Random initialization warm-up trials
+  n_iterations: 15                            # Guided optimization iterations
+  seed: 42
+
+  # Hyperparameter search space inclusion
+  search_space:
+    include_lambda_dl: true                   # Tune 3D U-Net prior weight in [0.0, 1.0]
+    include_spatial_bandwidths: true          # Tune spatial sigma_s and intensity sigma_r
+
+  # Objective function settings
+  objective:
+    # Objective metric: 'penalized_power', 'f1_score', 'mcc', or 'variational_elbo'
+    type: "penalized_power"
+    target_alpha: 0.05                        # Nominal spatial FDR target
+    fdr_penalty_weight: 4.0                   # Penalty multiplier for empirical FDR > alpha
+    tuning_max_iterations: 25                 # Max mean-field iterations during tuning (capped for speed)
+
+# Data partitioning & data leakage prevention
+evaluation:
+  prevent_data_leakage: true                  # Strictly isolate validation set from test set
+  validation_fraction: 0.5                    # 50% validation (for tuning), 50% test (for final comparison)
+
+# Output destinations
+outputs:
+  output_dir: "outputs/adaptive_selection"
+  figures_dir: "outputs/figures"
+  prefix: "fchmrf_adaptive"
+  dpi: 300

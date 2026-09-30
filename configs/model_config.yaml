@@ -1,0 +1,54 @@
+# ==============================================================================
+# Phase 3: 3D U-Net Model, Training, and Inference Configuration
+# ==============================================================================
+
+model:
+  architecture: "ConfigurableUNet3D"
+  in_channels: 1
+  out_classes: 1
+  base_channels: 16
+  depth: 3                         # 3 downsampling stages (requires divisibility by 2^3 = 8)
+  activation: "relu"               # Options: "relu", "leaky_relu", "elu", "gelu"
+  norm_type: "batch_norm"          # Options: "batch_norm", "instance_norm", "group_norm", "none"
+  dropout_rate: 0.1
+  channel_multipliers: [1, 2, 4, 8] # Filter progression: [16, 32, 64, 128]
+
+training:
+  batch_size: 2
+  epochs: 20
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  loss_function: "combined"        # Options: "combined" (BCE-Dice), "focal_dice", "dice", "focal"
+  loss_params:
+    bce_weight: 0.5
+    dice_weight: 0.5
+    alpha: 0.75
+    gamma: 2.0
+  device: "cuda"                   # Automatically falls back to "cpu" if CUDA is unavailable
+  seed: 42
+  checkpoint_dir: "checkpoints"
+  save_best_metric: "val_dice"
+
+dataset:
+  mode: "synthetic_benchmark"      # Strict separation: "supervised", "pretrained_eval", "synthetic_benchmark"
+  # Supervised mode (requires genuine ground truth NIfTI masks):
+  train_image_paths: []
+  train_mask_paths: []
+  val_image_paths: []
+  val_mask_paths: []
+  test_image_paths: []
+  test_mask_paths: []
+  # Synthetic benchmark mode (analytical ground truth by mathematical construction):
+  synthetic:
+    num_train_samples: 30
+    num_val_samples: 10
+    num_test_samples: 10
+    grid_size: [32, 32, 16]
+    snr: 2.5
+    num_clusters: 3
+
+inference:
+  threshold: 0.5
+  normalize_input: true
+  save_nifti: true
+  output_dir: "outputs/segmentations"

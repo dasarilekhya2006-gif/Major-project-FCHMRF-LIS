@@ -1,0 +1,182 @@
+{
+  "experiment_id": "final_phase7_demo",
+  "start_time": "2026-09-27T10:26:21.758322+00:00",
+  "end_time": "2026-09-27T10:27:09.342389+00:00",
+  "total_duration_seconds": 47.58406560000003,
+  "system_environment": {
+    "python_version": "3.13.9",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "processor": "Intel64 Family 6 Model 78 Stepping 3, GenuineIntel",
+    "architecture": "64bit",
+    "numpy_version": "2.3.5",
+    "torch_version": "2.14.0+cpu",
+    "cuda_available": false,
+    "gpu_name": "CPU (No CUDA device detected)",
+    "nibabel_version": "5.4.2",
+    "scipy_version": "1.16.3"
+  },
+  "pipeline_config": {
+    "experiment_id": "final_phase7_demo",
+    "output_dir": "outputs",
+    "device": "auto",
+    "force_recompute": true,
+    "run_adaptive_selection": true,
+    "seed": 42,
+    "raw_input_path": null,
+    "norm_method": "zscore",
+    "clip_percentiles": [
+      1.0,
+      99.0
+    ],
+    "model_checkpoint_path": null,
+    "roi_threshold": 0.5,
+    "test_type": "one_sample_t",
+    "mu_null": 0.0,
+    "alternative": "greater",
+    "restrict_stats_to_roi": true,
+    "fchmrf_mode": "adaptive_dl_fchmrf",
+    "beta": 0.8,
+    "sigma_spatial": 2.5,
+    "sigma_intensity": 1.5,
+    "lambda_dl": 0.5,
+    "alpha": 0.05,
+    "max_mf_iterations": 40,
+    "bo_iterations": 10,
+    "bo_initial": 4,
+    "acquisition_function": "expected_improvement"
+  },
+  "stages": {
+    "data_loading": {
+      "stage": "data_loading",
+      "status": "completed",
+      "output_files": {
+        "raw_volume": "outputs\\raw_synthetic_demo.nii.gz"
+      },
+      "metrics": {
+        "shape": [
+          32,
+          32,
+          16
+        ],
+        "is_4d": false,
+        "voxel_count": 16384,
+        "voxel_spacing": [
+          2.0,
+          2.0,
+          2.0
+        ]
+      },
+      "elapsed_seconds": 0.16924380000091332,
+      "error_message": null,
+      "recomputed": true
+    },
+    "preprocessing": {
+      "stage": "preprocessing",
+      "status": "completed",
+      "output_files": {
+        "preprocessed_nifti": "outputs\\preprocessed\\final_phase7_demo_preprocessed.nii.gz",
+        "qc_figure": "outputs\\figures\\final_phase7_demo_preprocessing_qc.png"
+      },
+      "metrics": {
+        "original_shape": [
+          32,
+          32,
+          16
+        ],
+        "processed_shape": [
+          32,
+          32,
+          16
+        ],
+        "mean_intensity": 1.4901161193847656e-08,
+        "std_intensity": 0.6719657778739929
+      },
+      "elapsed_seconds": 9.70128509999995,
+      "error_message": null,
+      "recomputed": true
+    },
+    "roi_detection": {
+      "stage": "roi_detection",
+      "status": "completed",
+      "output_files": {
+        "roi_binary": "outputs\\segmentations\\final_phase7_demo_roi_binary.nii.gz",
+        "roi_prob": "outputs\\segmentations\\final_phase7_demo_roi_prob.nii.gz"
+      },
+      "metrics": {
+        "roi_voxels": 820,
+        "roi_volume_mm3": 6560.0,
+        "threshold_used": 0.5,
+        "device_used": "cpu"
+      },
+      "elapsed_seconds": 0.6241792000000714,
+      "error_message": null,
+      "recomputed": true
+    },
+    "statistical_testing": {
+      "stage": "statistical_testing",
+      "status": "completed",
+      "output_files": {
+        "z_scores": "outputs\\statistical_maps\\final_phase7_demo_zscores.nii.gz",
+        "p_values": "outputs\\statistical_maps\\final_phase7_demo_pvalues.nii.gz",
+        "ortho_figure": "outputs\\figures\\final_phase7_demo_stats_ortho.png"
+      },
+      "metrics": {
+        "test_type": "one_sample_t",
+        "analyzed_voxels": 820,
+        "uncorrected_significant_p001": 0,
+        "max_abs_z": 2.5210459232330322
+      },
+      "elapsed_seconds": 9.034947999998622,
+      "error_message": null,
+      "recomputed": true
+    },
+    "fchmrf_lis": {
+      "stage": "fchmrf_lis",
+      "status": "completed",
+      "output_files": {
+        "lis_map": "outputs\\fchmrf_results\\final_phase7_demo_adaptive_lis_map.nii.gz",
+        "significant_mask": "outputs\\fchmrf_results\\final_phase7_demo_adaptive_significant_mask.nii.gz",
+        "posterior_prob": "outputs\\fchmrf_results\\final_phase7_demo_adaptive_posterior_prob.nii.gz",
+        "summary_json": "outputs\\fchmrf_results\\final_phase7_demo_adaptive_summary.json",
+        "summary_figure": "outputs\\figures\\final_phase7_demo_adaptive_fchmrf_summary.png"
+      },
+      "metrics": {
+        "method_mode": "adaptive_dl_fchmrf",
+        "analyzed_voxels": 820,
+        "discoveries": 0,
+        "discovery_rate_pct": 0.0,
+        "lis_cutoff": 0.0,
+        "estimated_fdr": 0.0,
+        "nominal_alpha": 0.05
+      },
+      "elapsed_seconds": 8.737346799998704,
+      "error_message": null,
+      "recomputed": true
+    },
+    "adaptive_selection": {
+      "stage": "adaptive_selection",
+      "status": "completed",
+      "output_files": {
+        "selected_yaml": "outputs\\adaptive_selection\\final_phase7_demo_selected.yaml",
+        "history_json": "outputs\\adaptive_selection\\final_phase7_demo_history.json",
+        "summary_figure": "outputs\\figures\\final_phase7_demo_adaptive_summary.png",
+        "adaptive_lis_map": "outputs\\fchmrf_results\\final_phase7_demo_adaptive_lis_map.nii.gz",
+        "adaptive_significant_mask": "outputs\\fchmrf_results\\final_phase7_demo_adaptive_significant_mask.nii.gz",
+        "adaptive_posterior_prob": "outputs\\fchmrf_results\\final_phase7_demo_adaptive_posterior_prob.nii.gz",
+        "adaptive_summary_figure": "outputs\\figures\\final_phase7_demo_adaptive_fchmrf_summary.png"
+      },
+      "metrics": {
+        "best_score": 0.0,
+        "baseline_score": 0.0,
+        "score_improvement": 0.0,
+        "is_benefit_measurable": false,
+        "total_bo_runtime_seconds": 4.081216000000495,
+        "adaptive_discoveries": 0,
+        "adaptive_estimated_fdr": 0.0
+      },
+      "elapsed_seconds": 10.350218600000517,
+      "error_message": null,
+      "recomputed": true
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "baseline_params": {
+    "beta": 0.8,
+    "sigma_spatial": 2.5,
+    "sigma_intensity": 1.5,
+    "w_pure_spatial": 0.2
+  },
+  "selected_params": {
+    "beta": 2.5,
+    "sigma_spatial": 1.0,
+    "sigma_intensity": 1.7676898079254284,
+    "w_pure_spatial": 0.0
+  },
+  "baseline_metrics": {
+    "num_discoveries": 48,
+    "discovery_rate": 0.04081632653061224,
+    "lis_cutoff": 0.1670220102176887,
+    "estimated_fdr": 0.047985021593408145,
+    "mean_field_iterations": 12,
+    "inference_runtime_seconds": 0.21285139999963576,
+    "power": 0.5679012345679012,
+    "fdp": 0.041666666666666664,
+    "f1_score": 0.7131782945736433,
+    "mcc": 0.7245163396948738
+  },
+  "selected_metrics": {
+    "num_discoveries": 66,
+    "discovery_rate": 0.05612244897959184,
+    "lis_cutoff": 0.26227239188118934,
+    "estimated_fdr": 0.046928791997431725,
+    "mean_field_iterations": 16,
+    "inference_runtime_seconds": 0.2315987000001769,
+    "power": 0.8148148148148148,
+    "fdp": 0.0,
+    "f1_score": 0.8979591836734693,
+    "mcc": 0.8965510603439181
+  },
+  "optimization_cost_seconds": 5.450475900001038,
+  "is_benefit_measurable": true,
+  "benefit_summary": "F1-score improved by 0.1848 without exceeding FDR"
+}

@@ -1,0 +1,38 @@
+# ==============================================================================
+# Phase 9 Configuration: Robustness and Uncertainty Evaluation
+#
+# Controlled Sensitivity Sweeps:
+#   1. Signal-to-Noise Ratio (SNR) sensitivity
+#   2. Input data perturbation (additive voxel jitter)
+#   3. Spatial autocorrelation bandwidth
+#   4. Hyperparameter sensitivity (lambda_DL prior weighting)
+#   5. Multi-seed Monte Carlo uncertainty and boundary entropy
+# ==============================================================================
+
+nominal_alpha: 0.05
+seed: 42
+
+sweeps:
+  volume_shape: [20, 20, 10]
+  snr_levels: [1.5, 2.5, 3.5]
+  perturbation_sigmas: [0.0, 0.15, 0.35]
+  spatial_smooth_sigmas: [0.0, 1.0, 2.0]
+  lambda_dl_values: [0.2, 0.5, 0.8]
+  num_repetitions_per_condition: 4
+  num_multi_seed_runs: 6
+
+fchmrf_defaults:
+  beta: 0.8
+  sigma_spatial: 2.5
+  sigma_intensity: 1.5
+  lambda_dl: 0.5
+  max_iterations: 30
+
+outputs:
+  output_dir: "outputs/experiments/phase9"
+  tables_dir: "outputs/tables"
+  figures_dir: "outputs/figures"
+  csv_filename: "phase9_robustness_metrics.csv"
+  markdown_filename: "phase9_robustness_metrics.md"
+  figure_filename: "phase9_robustness_summary.png"
+  dpi: 300

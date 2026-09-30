@@ -1,0 +1,25 @@
+{
+  "method_mode": "adaptive_dl_fchmrf",
+  "num_analyzed_voxels": 820,
+  "num_discoveries": 0,
+  "discovery_percentage": 0.0,
+  "fdr_results": {
+    "nominal_alpha": 0.05,
+    "estimated_fdr": 0.0,
+    "num_discoveries": 0,
+    "lis_threshold": 0.0
+  },
+  "model_parameters": {
+    "p0": 0.999,
+    "mu0": 0.0,
+    "sigma0": 1.0,
+    "mu1": 1.0,
+    "sigma1": 0.5516432416297933,
+    "beta": 0.8,
+    "sigma_spatial": 2.5,
+    "sigma_intensity": 1.5,
+    "lambda_dl": 0.5,
+    "mean_field_iterations": 14,
+    "mean_field_final_delta": 8.269311058189954e-05
+  }
+}

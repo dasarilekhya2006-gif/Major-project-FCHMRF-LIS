@@ -1,0 +1,219 @@
+{
+  "optimizer_name": "BayesianOptimization",
+  "best_parameters": {
+    "beta": 2.5,
+    "sigma_spatial": 1.0,
+    "sigma_intensity": 1.7676898079254284,
+    "w_pure_spatial": 0.0
+  },
+  "best_score": 0.8395061728395061,
+  "baseline_parameters": {
+    "beta": 0.8,
+    "sigma_spatial": 2.5,
+    "sigma_intensity": 1.5,
+    "w_pure_spatial": 0.2
+  },
+  "baseline_score": 0.5925925925925926,
+  "score_improvement": 0.24691358024691357,
+  "total_runtime_seconds": 5.450475900001038,
+  "trials": [
+    {
+      "trial_idx": 1,
+      "parameters": {
+        "beta": 0.8,
+        "sigma_spatial": 2.5,
+        "sigma_intensity": 1.5,
+        "w_pure_spatial": 0.2
+      },
+      "score": 0.5925925925925926,
+      "metrics": {
+        "power": 0.5925925925925926,
+        "fdp": 0.04,
+        "f1": 0.732824427480916,
+        "mcc": 0.7414996392755588,
+        "precision": 0.96,
+        "num_discoveries": 50.0,
+        "lis_threshold": 0.16128730061956031,
+        "mf_iterations": 12.0
+      },
+      "elapsed_seconds": 0.25493859999915003,
+      "timestamp": "2026-09-27T09:33:14.308899+00:00"
+    },
+    {
+      "trial_idx": 2,
+      "parameters": {
+        "beta": 0.9988962852336699,
+        "sigma_spatial": 4.802857225639665,
+        "sigma_intensity": 2.6959818254342154,
+        "w_pure_spatial": 0.2993292420985183
+      },
+      "score": 0.5185185185185185,
+      "metrics": {
+        "power": 0.5185185185185185,
+        "fdp": 0.023255813953488372,
+        "f1": 0.6774193548387096,
+        "mcc": 0.6983917190459747,
+        "precision": 0.9767441860465116,
+        "num_discoveries": 43.0,
+        "lis_threshold": 0.1472713803101594,
+        "mf_iterations": 12.0
+      },
+      "elapsed_seconds": 0.2616870000001654,
+      "timestamp": "2026-09-27T09:33:14.571016+00:00"
+    },
+    {
+      "trial_idx": 3,
+      "parameters": {
+        "beta": 0.47444473706184764,
+        "sigma_spatial": 1.6239780813448106,
+        "sigma_intensity": 0.6742508365045984,
+        "w_pure_spatial": 0.4330880728874676
+      },
+      "score": 0.6049382716049383,
+      "metrics": {
+        "power": 0.6049382716049383,
+        "fdp": 0.0392156862745098,
+        "f1": 0.7424242424242423,
+        "mcc": 0.749870098884078,
+        "precision": 0.9607843137254902,
+        "num_discoveries": 51.0,
+        "lis_threshold": 0.18231349150757725,
+        "mf_iterations": 11.0
+      },
+      "elapsed_seconds": 0.2731741999996302,
+      "timestamp": "2026-09-27T09:33:14.845508+00:00"
+    },
+    {
+      "trial_idx": 4,
+      "parameters": {
+        "beta": 1.542676028183701,
+        "sigma_spatial": 3.832290311184182,
+        "sigma_intensity": 0.5617534828874073,
+        "w_pure_spatial": 0.48495492608099716
+      },
+      "score": 0.4691358024691358,
+      "metrics": {
+        "power": 0.4691358024691358,
+        "fdp": 0.02564102564102564,
+        "f1": 0.6333333333333333,
+        "mcc": 0.6622002932376043,
+        "precision": 0.9743589743589743,
+        "num_discoveries": 39.0,
+        "lis_threshold": 0.1321632012904972,
+        "mf_iterations": 14.0
+      },
+      "elapsed_seconds": 0.28179180000006454,
+      "timestamp": "2026-09-27T09:33:15.127660+00:00"
+    },
+    {
+      "trial_idx": 5,
+      "parameters": {
+        "beta": 0.1,
+        "sigma_spatial": 3.7417901349940084,
+        "sigma_intensity": 1.4431517717667028,
+        "w_pure_spatial": 0.25422462875481266
+      },
+      "score": 0.6419753086419753,
+      "metrics": {
+        "power": 0.6419753086419753,
+        "fdp": 0.037037037037037035,
+        "f1": 0.7703703703703703,
+        "mcc": 0.7745281613912395,
+        "precision": 0.9629629629629629,
+        "num_discoveries": 54.0,
+        "lis_threshold": 0.20460846538953925,
+        "mf_iterations": 8.0
+      },
+      "elapsed_seconds": 0.21348220000072615,
+      "timestamp": "2026-09-27T09:33:16.079008+00:00"
+    },
+    {
+      "trial_idx": 6,
+      "parameters": {
+        "beta": 0.1,
+        "sigma_spatial": 1.0,
+        "sigma_intensity": 1.6907380005778518,
+        "w_pure_spatial": 0.0
+      },
+      "score": 0.6666666666666666,
+      "metrics": {
+        "power": 0.6666666666666666,
+        "fdp": 0.03571428571428571,
+        "f1": 0.7883211678832116,
+        "mcc": 0.7906127327273986,
+        "precision": 0.9642857142857143,
+        "num_discoveries": 56.0,
+        "lis_threshold": 0.2081521991024211,
+        "mf_iterations": 8.0
+      },
+      "elapsed_seconds": 0.21956720000162022,
+      "timestamp": "2026-09-27T09:33:16.977339+00:00"
+    },
+    {
+      "trial_idx": 7,
+      "parameters": {
+        "beta": 2.5,
+        "sigma_spatial": 1.0,
+        "sigma_intensity": 1.7676898079254284,
+        "w_pure_spatial": 0.0
+      },
+      "score": 0.8395061728395061,
+      "metrics": {
+        "power": 0.8395061728395061,
+        "fdp": 0.02857142857142857,
+        "f1": 0.9006622516556292,
+        "mcc": 0.8966046167636365,
+        "precision": 0.9714285714285714,
+        "num_discoveries": 70.0,
+        "lis_threshold": 0.2912046265023178,
+        "mf_iterations": 17.0
+      },
+      "elapsed_seconds": 0.2209404999994149,
+      "timestamp": "2026-09-27T09:33:17.891325+00:00"
+    },
+    {
+      "trial_idx": 8,
+      "parameters": {
+        "beta": 2.5,
+        "sigma_spatial": 4.525120908132777,
+        "sigma_intensity": 2.371045671560725,
+        "w_pure_spatial": 0.5
+      },
+      "score": 0.2962962962962963,
+      "metrics": {
+        "power": 0.2962962962962963,
+        "fdp": 0.04,
+        "f1": 0.4528301886792453,
+        "mcc": 0.518593990343921,
+        "precision": 0.96,
+        "num_discoveries": 25.0,
+        "lis_threshold": 0.13824188772079982,
+        "mf_iterations": 16.0
+      },
+      "elapsed_seconds": 0.20902019999994081,
+      "timestamp": "2026-09-27T09:33:18.634952+00:00"
+    },
+    {
+      "trial_idx": 9,
+      "parameters": {
+        "beta": 2.5,
+        "sigma_spatial": 5.0,
+        "sigma_intensity": 0.5,
+        "w_pure_spatial": 0.0
+      },
+      "score": 0.6836601307189543,
+      "metrics": {
+        "power": 0.7777777777777778,
+        "fdp": 0.07352941176470588,
+        "f1": 0.8456375838926173,
+        "mcc": 0.8389258472793267,
+        "precision": 0.9264705882352942,
+        "num_discoveries": 68.0,
+        "lis_threshold": 0.29774222862279043,
+        "mf_iterations": 20.0
+      },
+      "elapsed_seconds": 0.20165460000134772,
+      "timestamp": "2026-09-27T09:33:19.503837+00:00"
+    }
+  ]
+}

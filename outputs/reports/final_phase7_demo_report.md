@@ -1,0 +1,123 @@
+# Research Experiment Report: final_phase7_demo
+
+**Date**: 2026-09-27T10:26:21.758322+00:00  
+**Duration**: 47.58 seconds  
+**Host Hardware**: Intel64 Family 6 Model 78 Stepping 3, GenuineIntel | **Accelerator**: CPU (No CUDA device detected)  
+
+---
+
+## 1. Executive Summary
+
+| Pipeline Stage | Status | Duration | Cached / Recomputed | Key Metrics |
+| :--- | :--- | :--- | :--- | :--- |
+| **data_loading** | `COMPLETED` | 0.17s | Recomputed | is_4d: False, voxel_count: 16384 |
+| **preprocessing** | `COMPLETED` | 9.70s | Recomputed | mean_intensity: 0.0000, std_intensity: 0.6720 |
+| **roi_detection** | `COMPLETED` | 0.62s | Recomputed | roi_voxels: 820, roi_volume_mm3: 6560.0000, threshold_used: 0.5000 |
+| **statistical_testing** | `COMPLETED` | 9.03s | Recomputed | test_type: one_sample_t, analyzed_voxels: 820, uncorrected_significant_p001: 0 |
+| **fchmrf_lis** | `COMPLETED` | 8.74s | Recomputed | method_mode: adaptive_dl_fchmrf, analyzed_voxels: 820, discoveries: 0 |
+| **adaptive_selection** | `COMPLETED` | 10.35s | Recomputed | best_score: 0.0000, baseline_score: 0.0000, score_improvement: 0.0000 |
+
+---
+
+## 2. Stage Execution Details & Artifacts
+
+### Stage: Data Loading
+- **Status**: `completed`
+- **Execution Time**: 0.169 s
+- **Detailed Metrics**:
+  - `shape`: [32, 32, 16]
+  - `is_4d`: False
+  - `voxel_count`: 16384
+  - `voxel_spacing`: [2.0, 2.0, 2.0]
+- **Generated Artifacts**:
+  - [raw_volume](file:///outputs/raw_synthetic_demo.nii.gz)
+
+### Stage: Preprocessing
+- **Status**: `completed`
+- **Execution Time**: 9.701 s
+- **Detailed Metrics**:
+  - `original_shape`: [32, 32, 16]
+  - `processed_shape`: [32, 32, 16]
+  - `mean_intensity`: 0.0000
+  - `std_intensity`: 0.6720
+- **Generated Artifacts**:
+  - [preprocessed_nifti](file:///outputs/preprocessed/final_phase7_demo_preprocessed.nii.gz)
+  - [qc_figure](file:///outputs/figures/final_phase7_demo_preprocessing_qc.png)
+
+### Stage: Roi Detection
+- **Status**: `completed`
+- **Execution Time**: 0.624 s
+- **Detailed Metrics**:
+  - `roi_voxels`: 820
+  - `roi_volume_mm3`: 6560.0000
+  - `threshold_used`: 0.5000
+  - `device_used`: cpu
+- **Generated Artifacts**:
+  - [roi_binary](file:///outputs/segmentations/final_phase7_demo_roi_binary.nii.gz)
+  - [roi_prob](file:///outputs/segmentations/final_phase7_demo_roi_prob.nii.gz)
+
+### Stage: Statistical Testing
+- **Status**: `completed`
+- **Execution Time**: 9.035 s
+- **Detailed Metrics**:
+  - `test_type`: one_sample_t
+  - `analyzed_voxels`: 820
+  - `uncorrected_significant_p001`: 0
+  - `max_abs_z`: 2.5210
+- **Generated Artifacts**:
+  - [z_scores](file:///outputs/statistical_maps/final_phase7_demo_zscores.nii.gz)
+  - [p_values](file:///outputs/statistical_maps/final_phase7_demo_pvalues.nii.gz)
+  - [ortho_figure](file:///outputs/figures/final_phase7_demo_stats_ortho.png)
+
+### Stage: Fchmrf Lis
+- **Status**: `completed`
+- **Execution Time**: 8.737 s
+- **Detailed Metrics**:
+  - `method_mode`: adaptive_dl_fchmrf
+  - `analyzed_voxels`: 820
+  - `discoveries`: 0
+  - `discovery_rate_pct`: 0.0000
+  - `lis_cutoff`: 0.0000
+  - `estimated_fdr`: 0.0000
+  - `nominal_alpha`: 0.0500
+- **Generated Artifacts**:
+  - [lis_map](file:///outputs/fchmrf_results/final_phase7_demo_adaptive_lis_map.nii.gz)
+  - [significant_mask](file:///outputs/fchmrf_results/final_phase7_demo_adaptive_significant_mask.nii.gz)
+  - [posterior_prob](file:///outputs/fchmrf_results/final_phase7_demo_adaptive_posterior_prob.nii.gz)
+  - [summary_json](file:///outputs/fchmrf_results/final_phase7_demo_adaptive_summary.json)
+  - [summary_figure](file:///outputs/figures/final_phase7_demo_adaptive_fchmrf_summary.png)
+
+### Stage: Adaptive Selection
+- **Status**: `completed`
+- **Execution Time**: 10.350 s
+- **Detailed Metrics**:
+  - `best_score`: 0.0000
+  - `baseline_score`: 0.0000
+  - `score_improvement`: 0.0000
+  - `is_benefit_measurable`: False
+  - `total_bo_runtime_seconds`: 4.0812
+  - `adaptive_discoveries`: 0
+  - `adaptive_estimated_fdr`: 0.0000
+- **Generated Artifacts**:
+  - [selected_yaml](file:///outputs/adaptive_selection/final_phase7_demo_selected.yaml)
+  - [history_json](file:///outputs/adaptive_selection/final_phase7_demo_history.json)
+  - [summary_figure](file:///outputs/figures/final_phase7_demo_adaptive_summary.png)
+  - [adaptive_lis_map](file:///outputs/fchmrf_results/final_phase7_demo_adaptive_lis_map.nii.gz)
+  - [adaptive_significant_mask](file:///outputs/fchmrf_results/final_phase7_demo_adaptive_significant_mask.nii.gz)
+  - [adaptive_posterior_prob](file:///outputs/fchmrf_results/final_phase7_demo_adaptive_posterior_prob.nii.gz)
+  - [adaptive_summary_figure](file:///outputs/figures/final_phase7_demo_adaptive_fchmrf_summary.png)
+
+---
+
+## 3. Computational Environment
+
+- **Python**: `3.13.9`
+- **Platform**: `Windows-10-10.0.19045-SP0`
+- **PyTorch**: `2.14.0+cpu` (CUDA Available: `False`)
+- **Accelerator**: `CPU (No CUDA device detected)`
+- **NiBabel**: `5.4.2`
+- **NumPy**: `2.3.5`
+- **SciPy**: `1.16.3`
+
+---
+*Report auto-generated by Adaptive Deep Learning-Assisted fcHMRF-LIS Research Framework.*

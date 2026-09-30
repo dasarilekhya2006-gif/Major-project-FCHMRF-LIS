@@ -1,0 +1,47 @@
+{
+  "experiment_id": "demo_neuroimaging_phase8",
+  "filename": "sub-01_T1w_preprocessed.nii.gz",
+  "created_at": "2026-09-27T16:00:00Z",
+  "status": "completed",
+  "modality": "fMRI / T1w",
+  "shape": [
+    32,
+    32,
+    16
+  ],
+  "voxel_spacing": [
+    2.0,
+    2.0,
+    2.0
+  ],
+  "orientation": "RAS",
+  "stages": {
+    "upload": "completed",
+    "preprocess": "completed",
+    "segmentation": "completed",
+    "statistics": "completed",
+    "fchmrf_lis": "completed",
+    "fdr": "completed"
+  },
+  "parameters": {
+    "normalization": "zscore",
+    "denoising": "gaussian (FWHM 2.0mm)",
+    "resampling": "none",
+    "statistical_test": "one-sample t-test",
+    "nominal_alpha": 0.05,
+    "beta": 1.15,
+    "lambda_dl": 0.65,
+    "sigma_spatial": 2.2,
+    "sigma_intensity": 1.35,
+    "max_iterations": 35,
+    "execution_times": {
+      "preprocess": 0.12,
+      "segmentation": 0.45,
+      "statistics": 0.08,
+      "fchmrf_lis": 1.14,
+      "fdr": 0.01
+    }
+  },
+  "discoveries_proposed": 0,
+  "discoveries_baseline": 0
+}
