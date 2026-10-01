@@ -107,7 +107,7 @@ export default function SliceViewer2D({ externalScale }) {
     <div className="space-y-3">
       {/* Top Slice Info Bar & Zoom Controls */}
       <div className="flex items-center justify-between text-xs text-slate-400 bg-slate-900/60 p-2 rounded-lg border border-slate-800">
-        <div className="flex items-center gap-2 font-mono">
+        <div className="flex items-center gap-2">
           <span className="font-semibold text-slate-200 capitalize">{orientation} Slice</span>
           <span>•</span>
           <span>Index: <strong className="text-orange-400">{sliceIdx}</strong></span>
@@ -127,7 +127,7 @@ export default function SliceViewer2D({ externalScale }) {
           >
             <ZoomOut className="w-3.5 h-3.5" />
           </button>
-          <span className="text-[11px] font-mono w-10 text-center text-slate-300">
+          <span className="text-[11px] w-10 text-center text-slate-300">
             {scale.toFixed(1)}x
           </span>
           <button
@@ -155,16 +155,17 @@ export default function SliceViewer2D({ externalScale }) {
       </div>
 
       {/* Main Slice Canvas Viewport */}
-      <div className="bg-black border border-slate-800 rounded-lg p-4 flex items-center justify-center min-h-[380px] overflow-hidden relative shadow-inner">
+      <div className="bg-black border border-slate-800 rounded-lg p-4 flex items-center justify-center min-h-[380px] relative shadow-inner overflow-auto">
         <canvas
           ref={canvasRef}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
           style={{
-            transform: `scale(${scale})`,
+            width: sliceData ? sliceData.width * scale : 'auto',
+            height: sliceData ? sliceData.height * scale : 'auto',
             imageRendering: "pixelated",
             cursor: "crosshair",
-            transition: "transform 0.1s ease-out",
+            transition: "all 0.1s ease-out",
           }}
           className="border border-slate-900 rounded shadow-2xl"
         />

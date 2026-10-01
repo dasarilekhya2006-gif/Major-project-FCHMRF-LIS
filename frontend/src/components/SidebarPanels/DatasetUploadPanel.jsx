@@ -58,7 +58,7 @@ export default function DatasetUploadPanel() {
           <Database className="w-3.5 h-3.5 text-orange-400" />
           1. Dataset Upload
         </h3>
-        <span className="text-[11px] font-mono text-slate-400">.nii, .nii.gz</span>
+        <span className="text-[11px]  text-slate-400">.nii, .nii.gz</span>
       </div>
 
       {/* Upload Dropzone */}
@@ -99,7 +99,7 @@ export default function DatasetUploadPanel() {
 
       {/* Dataset Metadata Display */}
       {datasetMeta && (
-        <div className="bg-slate-950/60 border border-slate-800/80 rounded p-2.5 space-y-1.5 text-xs font-mono">
+        <div className="bg-slate-950/60 border border-slate-800/80 rounded p-2.5 space-y-1.5 text-xs ">
           <div className="flex items-center gap-1.5 text-emerald-400 font-semibold text-[11px]">
             <FileCheck className="w-3.5 h-3.5" />
             <span>✓ Dataset Validated</span>

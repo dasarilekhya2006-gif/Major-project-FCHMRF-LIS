@@ -24,7 +24,7 @@ export default function ComputationalTimePanel() {
   };
 
   return (
-    <div className="bg-slate-900/60 border border-slate-800 rounded-lg p-4 space-y-3 font-mono text-xs">
+    <div className="bg-slate-900/60 border border-slate-800 rounded-lg p-4 space-y-3  text-xs">
       <div className="flex items-center justify-between">
         <h3 className="font-semibold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
           <Clock className="w-3.5 h-3.5 text-orange-400" />

@@ -1,0 +1,52 @@
+{
+  "experiment_id": "exp_68bcc1941181",
+  "filename": "CT_Abdo.nii.gz",
+  "created_at": "2026-10-01T09:00:48.983807",
+  "status": "uploaded",
+  "stages": {
+    "upload": "completed",
+    "preprocess": "pending",
+    "segmentation": "pending",
+    "statistics": "pending",
+    "fchmrf_lis": "pending",
+    "fdr": "pending"
+  },
+  "parameters": {},
+  "shape": [
+    255,
+    178,
+    256
+  ],
+  "voxel_spacing": [
+    1.4937503337860107,
+    1.489554524421692,
+    1.494140625
+  ],
+  "orientation": "RAS",
+  "affine": [
+    [
+      1.4937503337860107,
+      0.0,
+      0.0,
+      -226.39654541015625
+    ],
+    [
+      0.0,
+      1.489554524421692,
+      0.0,
+      -131.16995239257812
+    ],
+    [
+      0.0,
+      0.0,
+      1.494140625,
+      -181.25
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ]
+}

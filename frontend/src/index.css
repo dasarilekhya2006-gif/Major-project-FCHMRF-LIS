@@ -5,22 +5,22 @@
 
 :root {
   /* Background hierarchy */
-  --bg-base:        #0b0f1a;
-  --bg-surface:     #111827;
-  --bg-card:        #161e2e;
-  --bg-elevated:    #1c2537;
-  --bg-input:       #0d1220;
+  --bg-base:        #fdfbf7;
+  --bg-surface:     #f4f0ea;
+  --bg-card:        #ffffff;
+  --bg-elevated:    #faf8f5;
+  --bg-input:       #fdfbf7;
 
   /* Borders */
-  --border-dim:     #1e2d42;
-  --border-subtle:  #243044;
-  --border-strong:  #2e4060;
+  --border-dim:     #e6e0d4;
+  --border-subtle:  #dcd4c6;
+  --border-strong:  #c2b7a3;
 
   /* Text */
-  --text-primary:   #e2e8f4;
-  --text-secondary: #94a8c4;
-  --text-muted:     #5d7494;
-  --text-dim:       #3a4e64;
+  --text-primary:   #333333;
+  --text-secondary: #555555;
+  --text-muted:     #777777;
+  --text-dim:       #999999;
 
   /* Scientific accent — blue/teal palette */
   --accent:         #3b82d4;
@@ -53,6 +53,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: -apple-system, "Segoe UI", system-ui, Roboto, sans-serif !important;
 }
 
 html { height: 100%; }
@@ -69,7 +70,7 @@ body {
 }
 
 code, pre, .mono {
-  font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+  font-family: inherit;
 }
 
 /* ---- Scrollbars ---- */
@@ -441,7 +442,7 @@ input[type="checkbox"] {
   font-weight: 700;
   color: var(--text-primary);
   line-height: 1;
-  font-family: "JetBrains Mono", monospace;
+  font-family: inherit;
 }
 
 .stat-card-sub {
@@ -457,7 +458,7 @@ input[type="checkbox"] {
   width: 100%;
   border-collapse: collapse;
   font-size: 12px;
-  font-family: "JetBrains Mono", monospace;
+  font-family: inherit;
 }
 
 .research-table thead tr {
@@ -552,7 +553,7 @@ input[type="checkbox"] {
 .bg-accent-dim  { background: var(--accent-dim); }
 .bg-emerald-dim { background: var(--emerald-dim); }
 
-.font-mono { font-family: "JetBrains Mono", monospace; }
+.font-mono { font-family: inherit; }
 
 @keyframes spin { to { transform: rotate(360deg); } }
 .animate-spin { animation: spin 1s linear infinite; }

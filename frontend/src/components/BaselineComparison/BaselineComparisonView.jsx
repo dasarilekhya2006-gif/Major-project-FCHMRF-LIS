@@ -102,7 +102,7 @@ export default function BaselineComparisonView() {
     <div className="space-y-3">
       {/* Plane Selection & Navigation Toolbar */}
       <div className="flex items-center justify-between text-xs text-slate-400 bg-slate-900/60 p-2 rounded-lg border border-slate-800">
-        <div className="flex items-center gap-2 font-mono">
+        <div className="flex items-center gap-2 ">
           <GitCompare className="w-4 h-4 text-orange-400" />
           <span className="font-semibold text-slate-200">Baseline (BH-FDR) vs Proposed (Adaptive fcHMRF-LIS)</span>
         </div>
@@ -132,7 +132,7 @@ export default function BaselineComparisonView() {
             </button>
           </div>
 
-          <div className="flex items-center gap-1.5 font-mono">
+          <div className="flex items-center gap-1.5 ">
             <button
               onClick={() => changeSlice(Math.max(0, sliceIdx - 1))}
               disabled={sliceIdx <= 0}
@@ -157,7 +157,7 @@ export default function BaselineComparisonView() {
         <div className="grid grid-cols-2 gap-3">
           {/* Baseline BH-FDR */}
           <div className="bg-slate-950 border border-slate-800 rounded-lg p-3 space-y-2">
-            <div className="flex items-center justify-between text-xs font-mono">
+            <div className="flex items-center justify-between text-xs ">
               <span className="font-semibold text-blue-400 flex items-center gap-1.5">
                 <span className="w-2.5 h-2.5 rounded-full bg-blue-500" />
                 Standard BH-FDR Baseline
@@ -169,7 +169,7 @@ export default function BaselineComparisonView() {
             <div className="bg-black rounded p-2 flex items-center justify-center min-h-[300px]">
               <canvas
                 ref={baselineCanvasRef}
-                style={{ transform: "scale(2.2)", imageRendering: "pixelated" }}
+                style={{ width: "100%", height: "100%", maxHeight: "280px", objectFit: "contain", imageRendering: "pixelated" }}
                 className="border border-slate-900 rounded shadow-md"
               />
             </div>
@@ -180,7 +180,7 @@ export default function BaselineComparisonView() {
 
           {/* Proposed Adaptive fcHMRF-LIS */}
           <div className="bg-slate-950 border border-slate-800 rounded-lg p-3 space-y-2">
-            <div className="flex items-center justify-between text-xs font-mono">
+            <div className="flex items-center justify-between text-xs ">
               <span className="font-semibold text-orange-400 flex items-center gap-1.5">
                 <span className="w-2.5 h-2.5 rounded-full bg-orange-500" />
                 Proposed Adaptive fcHMRF-LIS
@@ -192,7 +192,7 @@ export default function BaselineComparisonView() {
             <div className="bg-black rounded p-2 flex items-center justify-center min-h-[300px]">
               <canvas
                 ref={proposedCanvasRef}
-                style={{ transform: "scale(2.2)", imageRendering: "pixelated" }}
+                style={{ width: "100%", height: "100%", maxHeight: "280px", objectFit: "contain", imageRendering: "pixelated" }}
                 className="border border-slate-900 rounded shadow-md"
               />
             </div>
@@ -204,7 +204,7 @@ export default function BaselineComparisonView() {
       ) : (
         /* Difference Map */
         <div className="bg-slate-950 border border-slate-800 rounded-lg p-3 space-y-3">
-          <div className="flex items-center justify-between text-xs font-mono">
+          <div className="flex items-center justify-between text-xs ">
             <span className="font-semibold text-slate-200">
               Discrepancy Classification Map
             </span>
@@ -227,118 +227,14 @@ export default function BaselineComparisonView() {
           <div className="bg-black rounded p-4 flex items-center justify-center min-h-[340px]">
             <canvas
               ref={diffCanvasRef}
-              style={{ transform: "scale(2.4)", imageRendering: "pixelated" }}
+              style={{ width: "100%", height: "100%", maxHeight: "320px", objectFit: "contain", imageRendering: "pixelated" }}
               className="border border-slate-900 rounded shadow-md"
             />
           </div>
         </div>
       )}
 
-      {/* 5-Method Statistical Baseline Comparison Table */}
-      <div className="bg-slate-900/60 border border-slate-800 rounded-lg p-4 space-y-3 mt-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Layers className="w-4 h-4 text-orange-400" />
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-200">
-              9. Multi-Method Statistical Baseline Comparison (Phase 8 Benchmark)
-            </h3>
-          </div>
-          <span className="text-[11px] font-mono text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800/60">
-            5 Monte Carlo Trials • Ground Truth Verified
-          </span>
-        </div>
 
-        <p className="text-xs text-slate-400 leading-relaxed">
-          Direct empirical comparison across all 5 benchmarked methodologies under identical nominal FDR threshold (α = 0.05).
-          Raw values reported as Mean ± SEM.
-        </p>
-
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs font-mono border-collapse">
-            <thead>
-              <tr className="border-b border-slate-700 bg-slate-950/90 text-slate-400">
-                <th className="py-2.5 px-3">Methodology</th>
-                <th className="py-2.5 px-2.5 text-center">FDR (FDP)</th>
-                <th className="py-2.5 px-2.5 text-center">TPR (Power)</th>
-                <th className="py-2.5 px-2.5 text-center">FPR</th>
-                <th className="py-2.5 px-2.5 text-center">Precision</th>
-                <th className="py-2.5 px-2.5 text-center">Recall</th>
-                <th className="py-2.5 px-2.5 text-center">Specificity</th>
-                <th className="py-2.5 px-2.5 text-center">Localization Acc.</th>
-                <th className="py-2.5 px-2.5 text-center">Runtime</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-800/80 text-slate-300">
-              <tr className="hover:bg-slate-800/30">
-                <td className="py-2.5 px-3 font-semibold text-blue-400">
-                  1. Benjamini-Hochberg FDR
-                </td>
-                <td className="py-2.5 px-2.5 text-center text-emerald-400 font-medium">0.42% ± 0.26%</td>
-                <td className="py-2.5 px-2.5 text-center text-slate-300">37.98% ± 3.47%</td>
-                <td className="py-2.5 px-2.5 text-center text-slate-400">0.018% ± 0.011%</td>
-                <td className="py-2.5 px-2.5 text-center text-slate-300">99.58% ± 0.26%</td>
-                <td className="py-2.5 px-2.5 text-center text-slate-300">37.98% ± 3.47%</td>
-                <td className="py-2.5 px-2.5 text-center text-slate-300">99.98% ± 0.01%</td>
-                <td className="py-2.5 px-2.5 text-center text-slate-400">1.39 ± 0.51 vox</td>
-                <td className="py-2.5 px-2.5 text-center text-slate-400">0.0014 s</td>
-              </tr>
-              <tr className="hover:bg-slate-800/30">
-                <td className="py-2.5 px-3 font-semibold text-slate-300">
-                  2. Original fcHMRF-LIS
-                </td>
-                <td className="py-2.5 px-2.5 text-center text-emerald-400 font-medium">0.76% ± 0.20%</td>
-                <td className="py-2.5 px-2.5 text-center text-slate-300">44.65% ± 3.12%</td>
-                <td className="py-2.5 px-2.5 text-center text-slate-400">0.036% ± 0.009%</td>
-                <td className="py-2.5 px-2.5 text-center text-slate-300">99.24% ± 0.20%</td>
-                <td className="py-2.5 px-2.5 text-center text-slate-300">44.65% ± 3.12%</td>
-                <td className="py-2.5 px-2.5 text-center text-slate-300">99.96% ± 0.01%</td>
-                <td className="py-2.5 px-2.5 text-center text-slate-400">1.23 ± 0.46 vox</td>
-                <td className="py-2.5 px-2.5 text-center text-slate-400">1.06 s</td>
-              </tr>
-              <tr className="hover:bg-slate-800/30">
-                <td className="py-2.5 px-3 font-semibold text-amber-300">
-                  3. ROI + fcHMRF-LIS
-                </td>
-                <td className="py-2.5 px-2.5 text-center text-emerald-400 font-medium">1.24% ± 0.53%</td>
-                <td className="py-2.5 px-2.5 text-center text-amber-300 font-bold">72.28% ± 2.54%</td>
-                <td className="py-2.5 px-2.5 text-center text-slate-400">0.098% ± 0.046%</td>
-                <td className="py-2.5 px-2.5 text-center text-slate-300">98.76% ± 0.53%</td>
-                <td className="py-2.5 px-2.5 text-center text-amber-300 font-bold">72.28% ± 2.54%</td>
-                <td className="py-2.5 px-2.5 text-center text-slate-300">99.90% ± 0.05%</td>
-                <td className="py-2.5 px-2.5 text-center text-emerald-400">0.51 ± 0.23 vox</td>
-                <td className="py-2.5 px-2.5 text-center text-slate-400">1.02 s</td>
-              </tr>
-              <tr className="hover:bg-slate-800/30">
-                <td className="py-2.5 px-3 font-semibold text-slate-300">
-                  4. Adaptive fcHMRF-LIS
-                </td>
-                <td className="py-2.5 px-2.5 text-center text-emerald-400 font-medium">0.39% ± 0.24%</td>
-                <td className="py-2.5 px-2.5 text-center text-slate-300">41.75% ± 3.16%</td>
-                <td className="py-2.5 px-2.5 text-center text-slate-400">0.018% ± 0.011%</td>
-                <td className="py-2.5 px-2.5 text-center text-slate-300">99.61% ± 0.24%</td>
-                <td className="py-2.5 px-2.5 text-center text-slate-300">41.75% ± 3.16%</td>
-                <td className="py-2.5 px-2.5 text-center text-slate-300">99.98% ± 0.01%</td>
-                <td className="py-2.5 px-2.5 text-center text-slate-400">1.39 ± 0.49 vox</td>
-                <td className="py-2.5 px-2.5 text-center text-slate-400">1.10 s</td>
-              </tr>
-              <tr className="hover:bg-orange-950/20 bg-orange-950/10 border-t border-orange-500/30">
-                <td className="py-2.5 px-3 font-bold text-orange-400 flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-orange-500" />
-                  5. ROI + Adaptive fcHMRF-LIS (Proposed)
-                </td>
-                <td className="py-2.5 px-2.5 text-center text-emerald-400 font-bold">0.86% ± 0.58%</td>
-                <td className="py-2.5 px-2.5 text-center text-orange-300 font-bold">74.56% ± 2.36%</td>
-                <td className="py-2.5 px-2.5 text-center text-slate-400">0.072% ± 0.050%</td>
-                <td className="py-2.5 px-2.5 text-center text-slate-200 font-medium">99.14% ± 0.58%</td>
-                <td className="py-2.5 px-2.5 text-center text-orange-300 font-bold">74.56% ± 2.36%</td>
-                <td className="py-2.5 px-2.5 text-center text-slate-200">99.93% ± 0.05%</td>
-                <td className="py-2.5 px-2.5 text-center text-emerald-400 font-bold">0.49 ± 0.21 vox</td>
-                <td className="py-2.5 px-2.5 text-center text-slate-300">1.14 s</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
     </div>
   );
 }

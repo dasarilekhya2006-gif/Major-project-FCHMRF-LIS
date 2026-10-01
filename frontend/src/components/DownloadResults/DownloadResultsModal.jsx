@@ -91,7 +91,7 @@ export default function DownloadResultsModal() {
   ];
 
   return (
-    <div className="bg-slate-900/60 border border-slate-800 rounded-lg p-4 space-y-4 font-mono text-xs">
+    <div className="bg-slate-900/60 border border-slate-800 rounded-lg p-4 space-y-4  text-xs">
       <div className="flex items-center justify-between border-b border-slate-800 pb-2">
         <h3 className="font-semibold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
           <Download className="w-3.5 h-3.5 text-orange-400" />
@@ -139,7 +139,7 @@ export default function DownloadResultsModal() {
             >
               <div className="truncate pr-2">
                 <span className="text-slate-300 block text-xs truncate">{art.name}</span>
-                <span className="text-[10px] text-slate-500 font-mono">{art.file}</span>
+                <span className="text-[10px] text-slate-500 ">{art.file}</span>
               </div>
 
               {art.isReady && activeExperimentId ? (

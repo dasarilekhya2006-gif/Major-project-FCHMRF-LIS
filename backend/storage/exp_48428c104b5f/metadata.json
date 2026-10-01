@@ -2,16 +2,21 @@
   "experiment_id": "exp_48428c104b5f",
   "filename": "CT_Abdo.nii",
   "created_at": "2026-09-28T10:17:18.603010",
-  "status": "uploaded",
+  "status": "completed",
   "stages": {
     "upload": "completed",
-    "preprocess": "pending",
-    "segmentation": "pending",
-    "statistics": "pending",
-    "fchmrf_lis": "pending",
-    "fdr": "pending"
+    "preprocess": "completed",
+    "segmentation": "completed",
+    "statistics": "completed",
+    "fchmrf_lis": "completed",
+    "fdr": "completed"
   },
-  "parameters": {},
+  "parameters": {
+    "nominal_alpha": 0.05,
+    "beta": 0.8,
+    "lambda_dl": 0.5,
+    "max_iterations": 20
+  },
   "shape": [
     255,
     178,
@@ -48,5 +53,8 @@
       0.0,
       1.0
     ]
-  ]
+  ],
+  "discoveries_proposed": 222847,
+  "discoveries_baseline": 82148,
+  "lis_threshold": 0.1509691168570424
 }

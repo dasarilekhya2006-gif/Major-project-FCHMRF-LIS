@@ -1,4 +1,4 @@
-import { temperatureColormap } from "./colormap";
+
 
 /**
  * Composite multi-layer neuroimaging scientific slice onto an HTML5 Canvas.
@@ -96,32 +96,23 @@ export function renderSliceToCanvas(canvas, sliceData, options = {}) {
         b = Math.round(b * (1 - baseA) + 246 * baseA);
       }
 
-      // 5. Statistical / LIS / FDR Heatmap (Temperature Orange-Yellow)
-      let heatVal = null;
-      if (showFdr && sig && sig[y] && sig[y][x] > 0) {
-        // Highlighting FDR significant voxels
-        const z = stat ? Math.abs(stat[y][x]) : 3.0;
-        heatVal = Math.min(1.0, (z - 1.96) / 4.0); // normalized significance strength
-      } else if (showLis && lis && lis[y]) {
-        // Highlighting low LIS (1 - LIS)
-        const lVal = lis[y][x];
-        if (lVal <= lisThreshold) {
-          heatVal = 1.0 - lVal / Math.max(1e-4, lisThreshold);
+      // 5. Heatmap overlay (Jet Colormap)
+      if (showStat && stat && stat[y] && typeof stat[y][x] === 'number') {
+        const val = Math.abs(stat[y][x]);
+        if (val >= statThreshold) {
+          // Normalize val for Jet colormap (assuming max useful stat is around 5.0)
+          const normVal = Math.max(0, Math.min(1, (val - statThreshold) / (8.0 - statThreshold)));
+          // Jet Colormap logic
+          let hr = 0, hg = 0, hb = 0;
+          if (normVal < 0.25) { hr = 0; hg = Math.round(255 * (4 * normVal)); hb = 255; }
+          else if (normVal < 0.5) { hr = 0; hg = 255; hb = Math.round(255 * (1 - 4 * (normVal - 0.25))); }
+          else if (normVal < 0.75) { hr = Math.round(255 * (4 * (normVal - 0.5))); hg = 255; hb = 0; }
+          else { hr = 255; hg = Math.round(255 * (1 - 4 * (normVal - 0.75))); hb = 0; }
+          
+          r = Math.round(r * (1 - heatmapOpacity) + hr * heatmapOpacity);
+          g = Math.round(g * (1 - heatmapOpacity) + hg * heatmapOpacity);
+          b = Math.round(b * (1 - heatmapOpacity) + hb * heatmapOpacity);
         }
-      } else if (showStat && stat && stat[y]) {
-        // Raw z-score threshold
-        const z = Math.abs(stat[y][x]);
-        if (z >= statThreshold) {
-          heatVal = Math.min(1.0, (z - statThreshold) / 4.0);
-        }
-      }
-
-      if (heatVal !== null) {
-        const [hr, hg, hb] = temperatureColormap(heatVal);
-        const ha = heatmapOpacity;
-        r = Math.round(r * (1 - ha) + hr * ha);
-        g = Math.round(g * (1 - ha) + hg * ha);
-        b = Math.round(b * (1 - ha) + hb * ha);
       }
 
       data[idx] = r;

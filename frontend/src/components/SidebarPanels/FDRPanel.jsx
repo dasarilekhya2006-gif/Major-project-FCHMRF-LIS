@@ -22,7 +22,7 @@ export default function FDRPanel() {
         )}
       </div>
 
-      <div className="space-y-1.5 font-mono text-xs">
+      <div className="space-y-1.5  text-xs">
         <div className="flex justify-between text-slate-400">
           <span>Nominal Level α:</span>
           <span className="text-emerald-400 font-bold">{parameters.nominalAlpha}</span>

@@ -31,7 +31,7 @@ export default function AdaptiveParametersPanel() {
           <Cpu className="w-3.5 h-3.5 text-orange-400" />
           5. Parameter Selection
         </h3>
-        <span className="text-[10px] font-mono text-slate-400">
+        <span className="text-[10px]  text-slate-400">
           {parameters.adaptiveMode ? "Adaptive (Auto)" : "Manual"}
         </span>
       </div>
@@ -61,7 +61,7 @@ export default function AdaptiveParametersPanel() {
       </div>
 
       {/* Parameter Controls */}
-      <div className="space-y-2.5 text-xs font-mono">
+      <div className="space-y-2.5 text-xs ">
         <div>
           <div className="flex justify-between text-slate-400 mb-1">
             <span>FDR Nominal α:</span>

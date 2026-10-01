@@ -14,14 +14,14 @@ function StepBlock({ number, title, formula, description }) {
         width: 24, height: 24, borderRadius: "50%", flexShrink: 0,
         background: "var(--accent-dim)", border: "1px solid var(--accent-border)",
         display: "flex", alignItems: "center", justifyContent: "center",
-        fontSize: 11, fontWeight: 700, color: "var(--accent)", fontFamily: "JetBrains Mono, monospace",
+        fontSize: 11, fontWeight: 700, color: "var(--accent)"
       }}>{number}</div>
       <div>
         <div style={{ fontSize: 12, fontWeight: 700, color: "var(--text-primary)", marginBottom: 2 }}>
           {title}
         </div>
         {formula && (
-          <div style={{ fontSize: 11, fontFamily: "JetBrains Mono, monospace",
+          <div style={{ fontSize: 11, 
             color: "var(--teal)", padding: "4px 8px", background: "var(--bg-card)",
             borderRadius: 4, marginBottom: 4, display: "inline-block" }}>
             {formula}
@@ -40,7 +40,7 @@ function MonoRow({ label, value, highlight }) {
     <div style={{ display: "flex", justifyContent: "space-between", padding: "3px 0",
       borderBottom: "1px solid var(--border-dim)" }}>
       <span style={{ fontSize: 11, color: "var(--text-muted)" }}>{label}</span>
-      <span style={{ fontSize: 11, fontFamily: "JetBrains Mono, monospace",
+      <span style={{ fontSize: 11, 
         color: highlight ? "var(--teal)" : "var(--text-primary)", fontWeight: highlight ? 600 : 400 }}>
         {value}
       </span>
@@ -98,7 +98,7 @@ export default function FCHMRFPage() {
             <AlertTriangle size={14} />
             fcHMRF-LIS spatial graph exceeds the configured memory-safe limit.
           </div>
-          <div style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 11,
+          <div style={{ fontSize: 11,
             background: "rgba(0,0,0,0.1)", padding: "8px", borderRadius: 4, marginBottom: 8 }}>
             <MonoRow label="Valid voxels" value={details.valid_voxels?.toLocaleString()} />
             <MonoRow label="Neighborhood" value={connectivity ? `${connectivity}-connectivity lattice` : "N/A"} />
@@ -214,7 +214,7 @@ export default function FCHMRFPage() {
         <div className="card-header">
           <span className="card-title">Execution</span>
           <div style={{ display: "flex", gap: 8, fontSize: 11,
-            fontFamily: "JetBrains Mono, monospace", color: "var(--text-muted)" }}>
+             color: "var(--text-muted)" }}>
             <span>α = {parameters.nominalAlpha}</span>
             <span>β = {parameters.beta}</span>
             <span>λ = {parameters.lambdaDl}</span>
@@ -236,7 +236,7 @@ export default function FCHMRFPage() {
         {isRunning && (
           <div style={{ marginBottom: 10, padding: "9px 12px", borderRadius: 6,
             background: "var(--accent-dim)", border: "1px solid var(--accent-border)",
-            fontSize: 11, color: "var(--accent)", fontFamily: "JetBrains Mono, monospace" }}>
+            fontSize: 11, color: "var(--accent)" }}>
             <div style={{ fontWeight: 600, marginBottom: 4 }}>Processing…</div>
             <div>Building sparse 26-connectivity lattice graph → running mean-field iterations → computing LIS → applying FDR step-up</div>
             <div style={{ marginTop: 4, color: "var(--text-muted)", fontSize: 10 }}>
@@ -263,7 +263,7 @@ export default function FCHMRFPage() {
         {execTime && !error && (
           <div style={{ display: "flex", justifyContent: "space-between",
             marginTop: 10, paddingTop: 10, borderTop: "1px solid var(--border-dim)",
-            fontSize: 11, fontFamily: "JetBrains Mono, monospace", color: "var(--text-muted)" }}>
+            fontSize: 11, color: "var(--text-muted)" }}>
             <span>Execution time</span>
             <span style={{ color: "var(--text-primary)" }}>{execTime} s</span>
           </div>

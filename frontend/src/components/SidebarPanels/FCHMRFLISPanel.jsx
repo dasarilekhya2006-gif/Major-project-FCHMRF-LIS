@@ -77,7 +77,7 @@ export default function FCHMRFLISPanel() {
       </button>
 
       {execTime && (
-        <div className="text-[11px] font-mono text-slate-400 flex justify-between pt-1 border-t border-slate-800/60">
+        <div className="text-[11px]  text-slate-400 flex justify-between pt-1 border-t border-slate-800/60">
           <span>Execution time:</span>
           <span className="text-slate-200">{execTime} s</span>
         </div>

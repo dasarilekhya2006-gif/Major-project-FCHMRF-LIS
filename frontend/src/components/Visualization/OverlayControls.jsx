@@ -75,7 +75,7 @@ export default function OverlayControls() {
           >
             <ChevronRight className="w-3.5 h-3.5" />
           </button>
-          <span className="text-xs font-mono text-slate-300 min-w-[4rem] text-right">
+          <span className="text-xs  text-slate-300 min-w-[4rem] text-right">
             {sliceIdx} / {maxSlice || 0}
           </span>
         </div>

@@ -76,7 +76,7 @@ export default function Header() {
             <select
               value={activeExperimentId || ""}
               onChange={(e) => selectExperiment(e.target.value)}
-              className="bg-transparent text-slate-200 font-mono text-xs focus:outline-none cursor-pointer"
+              className="bg-transparent text-slate-200  text-xs focus:outline-none cursor-pointer"
             >
               {experimentsList.length === 0 ? (
                 <option value="" disabled>No experiments found</option>
@@ -99,7 +99,7 @@ export default function Header() {
 
           {/* Backend Health Badge */}
           <div
-            className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-mono border ${
+            className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs  border ${
               backendOnline
                 ? "bg-emerald-950/40 text-emerald-400 border-emerald-800/50"
                 : "bg-rose-950/40 text-rose-400 border-rose-800/50"

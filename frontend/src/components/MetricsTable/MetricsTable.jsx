@@ -16,13 +16,13 @@ export default function MetricsTable() {
           <Table className="w-3.5 h-3.5 text-orange-400" />
           Quantitative Experimental Comparison
         </h3>
-        <span className="text-[11px] font-mono text-slate-400">
+        <span className="text-[11px]  text-slate-400">
           Target FDR Nominal α = {parameters.nominalAlpha}
         </span>
       </div>
 
       <div className="overflow-x-auto">
-        <table className="w-full text-left text-xs font-mono border-collapse">
+        <table className="w-full text-left text-xs  border-collapse">
           <thead>
             <tr className="border-b border-slate-700 bg-slate-950/80 text-slate-400">
               <th className="py-2 px-3">Evaluation Metric</th>

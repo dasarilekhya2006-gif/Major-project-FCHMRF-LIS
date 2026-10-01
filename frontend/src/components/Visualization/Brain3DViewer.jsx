@@ -27,7 +27,7 @@ export default function Brain3DViewer() {
     }
   }, [activeExperimentId, meshData, load3DMesh]);
 
-  // Handle mouse drag for 360-degree rotation
+  // Enable mouse drag for 360-degree rotation
   const handleMouseDown = (e) => {
     setIsDragging(true);
     setDragStart({ x: e.clientX, y: e.clientY });
@@ -37,8 +37,8 @@ export default function Brain3DViewer() {
     if (!isDragging) return;
     const dx = e.clientX - dragStart.x;
     const dy = e.clientY - dragStart.y;
-    setRotY((prev) => (prev + dx * 0.5) % 360);
-    setRotX((prev) => Math.max(-85, Math.min(85, prev - dy * 0.5)));
+    setRotY((prev) => prev + dx * 0.5);
+    setRotX((prev) => Math.max(-90, Math.min(90, prev + dy * 0.5)));
     setDragStart({ x: e.clientX, y: e.clientY });
   };
 
@@ -186,11 +186,11 @@ export default function Brain3DViewer() {
     <div className="space-y-3">
       {/* 3D Toolbar */}
       <div className="flex items-center justify-between text-xs text-slate-400 bg-slate-900/60 p-2 rounded-lg border border-slate-800">
-        <div className="flex items-center gap-2 font-mono">
+        <div className="flex items-center gap-2">
           <Rotate3d className="w-4 h-4 text-orange-400" />
           <span className="font-semibold text-slate-200">3D Isosurface (Marching Cubes)</span>
           <span>•</span>
-          <span>Drag to rotate 360° • Scroll to zoom</span>
+          <span>Scroll to zoom</span>
         </div>
 
         <div className="flex items-center gap-2">
@@ -238,11 +238,12 @@ export default function Brain3DViewer() {
 
       {/* 3D Viewport */}
       <div
-        className="bg-black border border-slate-800 rounded-lg p-2 flex items-center justify-center min-h-[440px] relative overflow-hidden cursor-grab active:cursor-grabbing shadow-inner"
+        className="bg-black border border-slate-800 rounded-lg p-2 flex items-center justify-center min-h-[440px] relative overflow-hidden shadow-inner cursor-grab active:cursor-grabbing"
+        onWheel={handleWheel}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
-        onWheel={handleWheel}
+        onMouseLeave={handleMouseUp}
       >
         <canvas
           ref={canvasRef}

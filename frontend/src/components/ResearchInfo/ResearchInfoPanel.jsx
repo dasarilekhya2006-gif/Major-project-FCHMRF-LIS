@@ -12,7 +12,7 @@ export default function ResearchInfoPanel() {
           <BookOpen className="w-3.5 h-3.5 text-orange-400" />
           Research Methodology & Formal Specifications
         </h3>
-        <span className="text-[11px] font-mono text-slate-400">Adaptive fcHMRF-LIS</span>
+        <span className="text-[11px]  text-slate-400">Adaptive fcHMRF-LIS</span>
       </div>
 
       <div className="grid grid-cols-2 gap-3">
@@ -24,7 +24,7 @@ export default function ResearchInfoPanel() {
           <p className="text-[11px] text-slate-400 leading-relaxed">
             Models dense pairwise spatial dependencies between voxels using bilateral kernel weights:
           </p>
-          <div className="bg-slate-900 p-2 rounded text-[10px] font-mono text-orange-300">
+          <div className="bg-slate-900 p-2 rounded text-[10px]  text-orange-300">
             w_ij = exp( - ||p_i - p_j||² / (2 σ_p²) - ||z_i - z_j||² / (2 σ_z²) )
           </div>
           <p className="text-[11px] text-slate-400 leading-relaxed">
@@ -40,7 +40,7 @@ export default function ResearchInfoPanel() {
           <p className="text-[11px] text-slate-400 leading-relaxed">
             LIS estimates posterior probability of the null hypothesis at each voxel:
           </p>
-          <div className="bg-slate-900 p-2 rounded text-[10px] font-mono text-emerald-300">
+          <div className="bg-slate-900 p-2 rounded text-[10px]  text-emerald-300">
             LIS_i = P(θ_i = 0 | Z)
           </div>
           <p className="text-[11px] text-slate-400 leading-relaxed">

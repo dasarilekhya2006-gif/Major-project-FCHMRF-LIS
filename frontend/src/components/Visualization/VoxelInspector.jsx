@@ -9,7 +9,7 @@ export default function VoxelInspector({ hoveredVoxel }) {
 
   if (!hoveredVoxel) {
     return (
-      <div className="bg-slate-900/60 border border-slate-800 rounded-lg p-2.5 text-xs text-slate-400 font-mono flex items-center justify-between">
+      <div className="bg-slate-900/60 border border-slate-800 rounded-lg p-2.5 text-xs text-slate-400  flex items-center justify-between">
         <span className="flex items-center gap-1.5 text-slate-500">
           <Crosshair className="w-3.5 h-3.5" />
           Hover over brain slice to inspect voxel metrics
@@ -23,7 +23,7 @@ export default function VoxelInspector({ hoveredVoxel }) {
   const [worldX, worldY, worldZ] = voxelToWorld(x, y, z, affine);
 
   return (
-    <div className="bg-slate-950 border border-slate-700/80 rounded-lg p-2.5 text-xs font-mono shadow-lg space-y-1.5">
+    <div className="bg-slate-950 border border-slate-700/80 rounded-lg p-2.5 text-xs  shadow-lg space-y-1.5">
       <div className="flex items-center justify-between border-b border-slate-800 pb-1.5">
         <div className="flex items-center gap-2">
           <span className="flex items-center gap-1 text-cyan-400 font-bold">
